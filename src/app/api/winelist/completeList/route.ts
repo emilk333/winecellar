@@ -8,7 +8,8 @@ export async function GET(req: NextRequest) {
     const fakeJsonResponseSingleWine = [
         {
             type: "white",
-            vintage: "2020",
+            uuid: 1231,
+            vintage: 2020,
             country: "germany",
             name: "Morstein GG",
             producer: "Wittmann",
@@ -20,7 +21,34 @@ export async function GET(req: NextRequest) {
         },
         {
             type: "white",
-            vintage: "2020",
+            uuid: 1232,
+            vintage: 2007,
+            country: "germany",
+            name: "Gaisböhl GC",
+            producer: "Dr. Burklin Wolf",
+            appelation: "Phalz",
+            price: {
+                buyingPrice: "600",
+                estimatedCurrentValue: "700"
+            }
+        },
+        {
+            type: "white",
+            uuid: 1233,
+            vintage: 2020,
+            country: "germany",
+            name: "Morstein GG",
+            producer: "Wittmann",
+            appelation: "Rheinhessen",
+            price: {
+                buyingPrice: "1300",
+                estimatedCurrentValue: "1300"
+            }
+        },
+        {
+            type: "white",
+            uuid: 1234,
+            vintage: 2020,
             country: "france",
             name: "Montée de Tonerre 1. Cru",
             producer: "Raveneau",
@@ -32,7 +60,8 @@ export async function GET(req: NextRequest) {
         },
         {
             type: "white",
-            vintage: "1994",
+            uuid: 1235,
+            vintage: 1994,
             country: "france",
             name: "Corton-Charlemagne Grand Cru",
             producer: "Bonneau du Martray",
@@ -44,7 +73,8 @@ export async function GET(req: NextRequest) {
         },
         {
             type: "rose",
-            vintage: "2021",
+            uuid: 1236,
+            vintage: 2021,
             country: "france",
             name: "Rosé",
             producer: "Tempier",
@@ -56,7 +86,8 @@ export async function GET(req: NextRequest) {
         },
         {
             type: "red",
-            vintage: "2015",
+            uuid: 1237,
+            vintage: 2015,
             country: "france",
             name: "Musigny Grand Cru",
             producer: "Comte Georges de Vogüé",
