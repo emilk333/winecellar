@@ -1,5 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
 
+/**
+ * This endpoint is only for testing with static data. 
+*/
 export async function GET(req: NextRequest) {
     
     // Verify this is the data structure i want to use.. 
@@ -15,8 +18,8 @@ export async function GET(req: NextRequest) {
             producer: "Wittmann",
             appelation: "Rheinhessen",
             price: {
-                buyingPrice: "1300",
-                estimatedCurrentValue: "1300"
+                buyingPrice: 1300,
+                estimatedCurrentValue: 1300
             }
         },
         {
@@ -28,8 +31,8 @@ export async function GET(req: NextRequest) {
             producer: "Dr. Burklin Wolf",
             appelation: "Phalz",
             price: {
-                buyingPrice: "600",
-                estimatedCurrentValue: "700"
+                buyingPrice: 600,
+                estimatedCurrentValue: 700
             }
         },
         {
@@ -41,8 +44,8 @@ export async function GET(req: NextRequest) {
             producer: "Wittmann",
             appelation: "Rheinhessen",
             price: {
-                buyingPrice: "1300",
-                estimatedCurrentValue: "1300"
+                buyingPrice: 1300,
+                estimatedCurrentValue: 1300
             }
         },
         {
@@ -54,8 +57,8 @@ export async function GET(req: NextRequest) {
             producer: "Raveneau",
             appelation: "Chablis",
             price: {
-                buyingPrice: "3000",
-                estimatedCurrentValue: "3000"
+                buyingPrice: 3000,
+                estimatedCurrentValue: 3000
             }
         },
         {
@@ -67,8 +70,8 @@ export async function GET(req: NextRequest) {
             producer: "Bonneau du Martray",
             appelation: "Pernand-Vergelesses",
             price: {
-                buyingPrice: "31000",
-                estimatedCurrentValue: "32000"
+                buyingPrice: 31000,
+                estimatedCurrentValue: 32000
             }
         },
         {
@@ -80,8 +83,8 @@ export async function GET(req: NextRequest) {
             producer: "Tempier",
             appelation: "Bandol",
             price: {
-                buyingPrice: "800",
-                estimatedCurrentValue: "700"
+                buyingPrice: 800,
+                estimatedCurrentValue: 700
             }
         },
         {
@@ -93,8 +96,8 @@ export async function GET(req: NextRequest) {
             producer: "Comte Georges de Vogüé",
             appelation: "Chambolle-Musigny",
             price: {
-                buyingPrice: "61000",
-                estimatedCurrentValue: "62000"
+                buyingPrice: 61000,
+                estimatedCurrentValue: 62000
             }
         }
     ]

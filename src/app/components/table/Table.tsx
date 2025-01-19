@@ -1,3 +1,4 @@
+import thousandCommaSeparator from "@/app/util/currency";
 import Image from "next/image";
 
 export default function Table({ row }: any) {
@@ -12,7 +13,7 @@ export default function Table({ row }: any) {
 					<td className="basis-4/12">{row.producer}</td>
 					<td className="basis-3/12">{row.appelation}</td>
 					<td className="basis-1/12 text-right">
-						{row.price.buyingPrice}
+						{row.price?.buyingPrice ? thousandCommaSeparator(row.price?.buyingPrice) : ""}
 					</td>
 				</tr>
 			</tbody>

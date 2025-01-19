@@ -1,10 +1,10 @@
 import Image from "next/image"
 import Table from "./components/table/Table"
-import { fetchWrapped } from "./util/fetch"
-import { Endpoint } from "./util/endpoints"
 import { transformWinesIntoStructuralData } from "./dataTransform/dataTransform"
 import React, { Suspense } from "react"
 import Search from "./components/input/Search"
+import { createClient } from '@/app/util/supabase/server';
+
 
 const renderAppelationSections = (wineByAppelation: any) => {
 	return (
@@ -60,24 +60,17 @@ export default async function Home(props: {
 }) {
 	const query = await (await props.searchParams).query ?? ""
 
-	// TODO we should request something from an api client with a schema. Type "Any" is just for testing.
-	const [data, err] = await fetchWrapped<any>(
-		fetch(process.env.URL + Endpoint.ALL_WINE, {
-			method: "GET",
-			headers: {
-				"Content-Type": "application/json",
-			},
-		})
-	)
+	const supabase = await createClient()
+    const { data: wines, error } = await supabase.from("wines").select()
 
-	if (err) return <div>Implement error handling pls</div>
+	if (error) return <div>Implement error handling pls</div>
 
-	const transformedData = transformWinesIntoStructuralData(data, query)
+	const transformedData = transformWinesIntoStructuralData(wines, query)
 
 	return (
 		<div className="items-center justify-items-center min-h-screen p-8 pb-20 font-[family-name:var(--font-geist-sans)]">
 			<main className="w-full ">
-				<Search placeholder={"placeholderzzzz"} />
+				<Search placeholder={"search..."} />
 				<div className="flex items-center justify-center">
 					<div className="w-full max-w-3xl block">
 						{transformedData.map((row: any, index: number) =>
