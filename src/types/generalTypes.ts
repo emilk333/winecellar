@@ -1,4 +1,5 @@
-
+import { InferSelectModel } from "drizzle-orm"
+import { wines } from "../../drizzle/schema"
 
 export interface IFetchHeaderConfig {
     method?: string, // *GET, POST, PUT, DELETE, etc.
@@ -14,5 +15,4 @@ export interface IGenericFetchProps {
     queryParam?: string,
     headerConfig: IFetchHeaderConfig,
 }
-
 

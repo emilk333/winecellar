@@ -1,6 +1,6 @@
 
-// TODO THIS SHOULD NOT BE DONE. THE DATABASE SHOULD RETURN WHAT WE NEED. THIS IS 
-// ONLY FOR TESTING 
+
+import { Wine } from "@/types/schema"
 
 enum WineType {
     White = "white",
@@ -84,7 +84,7 @@ const filterWinesBySearchQuery = (originalWines: any, query: string) => {
 }
 
 
-const transformWinesIntoStructuralData = (originalWines: any, query: string): any => {
+const transformWinesIntoStructuralData = (originalWines: Wine[], query: string): any => {
     return filterByType(filterWinesBySearchQuery(originalWines, query))
 }
 

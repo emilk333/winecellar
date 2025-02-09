@@ -1,9 +1,11 @@
 import Image from "next/image"
-import Table from "./components/table/Table"
 import { transformWinesIntoStructuralData } from "./dataTransform/dataTransform"
 import React, { Suspense } from "react"
 import Search from "./components/input/Search"
-import { createClient } from '@/app/util/supabase/server';
+import AddWine from "./features/AddWine"
+import TableRowWithDelete from "./components/table/TableRowWithDelete"
+import { getAllWine } from "./queries/wines"
+import { Wine } from "@/types/schema"
 
 
 const renderAppelationSections = (wineByAppelation: any) => {
@@ -12,11 +14,17 @@ const renderAppelationSections = (wineByAppelation: any) => {
 			<h3 className="capitalize text-center text-lg font-bold">
 				{wineByAppelation.appelation}
 			</h3>
-			{wineByAppelation.wines.map((wine: any, index: number) => (
-				<Suspense key={index}>
-					<Table row={wine} key={index} />
-				</Suspense>
-			))}
+			<table className="w-full">
+				<caption className="sr-only"></caption>
+				<thead className="sr-only"></thead>
+				<tbody>
+					{wineByAppelation.wines.map((wine: any, index: number) => (
+						<Suspense key={index}>
+							<TableRowWithDelete row={wine} key={index} />
+						</Suspense>
+					))}
+				</tbody>
+			</table>
 		</section>
 	)
 }
@@ -60,10 +68,10 @@ export default async function Home(props: {
 }) {
 	const query = await (await props.searchParams).query ?? ""
 
-	const supabase = await createClient()
-    const { data: wines, error } = await supabase.from("wines").select()
-
-	if (error) return <div>Implement error handling pls</div>
+	// const supabase = await createClient()
+    // const { data: wines, error } = await supabase.from("wines").select()
+	// if (error) return <div>Implement error handling pls</div>
+	const wines = await getAllWine()
 
 	const transformedData = transformWinesIntoStructuralData(wines, query)
 
@@ -78,6 +86,7 @@ export default async function Home(props: {
 						)}
 					</div>
 				</div>
+				<AddWine />
 			</main>
 		</div>
 	)

@@ -1,4 +1,4 @@
-import { IGenericFetchProps } from "./types";
+import { IGenericFetchProps } from "../../types/generalTypes";
 
 const defaultHeaderConfig = {
 	headers: {
