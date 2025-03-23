@@ -14,5 +14,4 @@ export async function deleteWine(id: number) {
 	}
     
     revalidatePath("/")
-    return data
 }

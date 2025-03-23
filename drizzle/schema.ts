@@ -1,4 +1,7 @@
 import { pgTable, bigint, uuid, timestamp, text, json } from "drizzle-orm/pg-core"
+import { sql } from "drizzle-orm"
+
+
 
 export const wines = pgTable("wines", {
 	// You can use { mode: "bigint" } if numbers are exceeding js number limitations

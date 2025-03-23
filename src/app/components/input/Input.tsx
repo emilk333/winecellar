@@ -1,6 +1,9 @@
 "use client"
 
-export default function Input({ message, id }: any) {
+import { FC } from "react"
+import { TableCellComponent } from "../table/TableRow"
+
+export const Input: FC<TableCellComponent> = ({ message, id }: any) => {
 	return (
 		<div className="relative">
 			<label htmlFor="search" className="">

@@ -16,3 +16,8 @@ export interface IGenericFetchProps {
     headerConfig: IFetchHeaderConfig,
 }
 
+export type WinePrice = {
+  buyingPrice: number
+  estimatedCurrentValue: number
+}
+
