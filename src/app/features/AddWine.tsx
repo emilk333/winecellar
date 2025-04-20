@@ -1,9 +1,9 @@
-"use client"
 
 import { createWine } from "@/app/actions/createWine"
 import { Input } from "../components/input/Input"
 import { TableRow } from "../components/table/TableRow"
 import { WinePrice } from "@/types/generalTypes"
+import Submit from "../components/form/Submit"
 
 export interface FakeRow {
 	vintage: number
@@ -39,7 +39,7 @@ export default function AddWine() {
 			</table>
 			<Input message={""} id="type" />
 			<Input message={""} id="country" />
-			<button type="submit">Submit</button>
+			<Submit />
 		</form>
 	)
 }

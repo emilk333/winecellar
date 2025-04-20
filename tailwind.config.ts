@@ -11,7 +11,19 @@ export default {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        'paper': '#F5F4F1',
+        'piss-yellow': '#FFF8AF',
+        'off-red': '#F11D1D',
+        'port': '#F48A47',
+        'orange': '#F99340',
+        'off-yellow': '#FFEA80',
+        'rosé': 'FF8086'
       },
+      fontFamily: {
+        'old-london': ['var(--font-old-london)'],
+        serif: ['var(--font-cormorant)'],
+        sans: ['var(--font-rubik)']
+      }
     },
   },
   plugins: [],

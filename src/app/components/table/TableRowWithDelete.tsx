@@ -1,57 +1,84 @@
 "use client"
 
-import React, { FC, useState } from "react"
+import React, { FC, useRef, useState } from "react"
 import Modal from "./../modal/Modal"
 import { Wine } from "@/types/schema"
 import { Paragraph } from "../text/Text"
 import { TableRow } from "./TableRow"
 import { useRouter } from "next/navigation"
+import { fetchWrapped } from "@/app/util/fetch"
+import { Button } from "../button/Button"
+import TimesIcon from "../svg/Times"
+import { MouseTracker } from "../cursor/FollowCursor"
+import { rubikFont } from "@/app/util/font/fonts"
 
 interface TableRowWithDeleteProps {
 	row: Wine
-	key: number
+	index: number
 }
 
 export const TableRowWithDelete: FC<TableRowWithDeleteProps> = ({
 	row,
-	key,
+	index
 }) => {
+	
 	const [isModalOpen, setModalOpen] = useState(false)
-	const modalMessage = `Are you sure you want to delete ${row.vintage} ${
+	const router = useRouter()
+	const modalMessage = `You are about to permanently delete ${row.vintage} ${
 		row.name ?? ""
 	} ${row.producer}?`
 
 	const openModal = () => setModalOpen(true)
 	const closeModal = () => setModalOpen(false)
-	const router = useRouter()
-
 	const deleteWine = async (id: number) => {
 		const payload = { id: id }
-		try {
-			await fetch(`http://localhost:3000/api/deleteWine`, {
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify(payload),
-			})
-		} catch (error) {
-			console.error("Error:", error)
-		}
+
+		return fetchWrapped(fetch(`/api/deleteWine`, {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(payload),
+		}))
 	}
 
-	const buttonConfig = {
-		name: "delete",
+	const btnConfigTableRow = {
+		name: <div className="flex items-center">
+			<MouseTracker offset={{ x: 10, y: 0 }} elementIdentifier={index}>
+				<TimesIcon color={"fill-red-500"}/>
+				<span className={`pl-1 font-sans text-[10px] ${rubikFont.variable}`}>Delete</span>
+			</MouseTracker>
+		</div>,
+		stripStyling: false,
+		styling: `w-full min-h-4`,
 		callback: () => openModal(),
 	}
 
+	const btnConfigCancel = {
+		name: "Cancel",
+		stripStyling: false,
+		styling: "border border-slate-200 text-[10px] font-sans",
+		callback: () => closeModal(),
+	}
+	
+	const btnConfigDeleteRow = {
+		name: `I understand, delete this wine`,
+		stripStyling: false,
+		styling: "me-2 w-full bg-red-600 hover:bg-red-700 disabled:opacity-50 transition-opacity text-white text-[10px] font-sans font-bold",
+		callback: async () => {
+			return deleteWine(row.id).then(() => {
+				closeModal()
+				router.refresh()
+			})
+		}
+	}
 	return (
 		<React.Fragment>
 			<TableRow
 				row={row}
-				key={key}
+				index={index}
 				Component={Paragraph}
-				buttonConfig={buttonConfig}
+				buttonConfig={btnConfigTableRow}
 			/>
 			<tr>
 				<td>
@@ -60,14 +87,8 @@ export const TableRowWithDelete: FC<TableRowWithDeleteProps> = ({
 						onClose={closeModal}
 						message={modalMessage}
 					>
-						<button
-							onClick={() =>
-								deleteWine(row.id).then(() => router.refresh())
-							}
-						>
-							Delete
-						</button>
-						<button onClick={closeModal}>Cancel</button>
+						<Button {...btnConfigDeleteRow}/>
+						<Button {...btnConfigCancel}/>
 					</Modal>
 				</td>
 			</tr>

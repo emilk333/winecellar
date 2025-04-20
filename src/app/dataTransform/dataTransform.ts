@@ -1,30 +1,21 @@
-import { Wine } from "@/types/schema"
+import { Wine, WineType } from "@/types/schema"
 
 export interface TypeWine {
-	type: string
+	type: WineType
 	wines: CountryWine[]
 }
 
 export interface CountryWine {
-	country: string
+	country: string | null
 	wines: AppelationWine[]
 }
 
 export interface AppelationWine {
-	appelation: string
+	appelation: string | null
 	wines: Wine[]
 }
 
-enum WineType {
-	White = "white",
-	Red = "red",
-	Rosé = "rose",
-	Orange = "orange",
-	Sweet = "sweet",
-	Port = "port",
-}
-
-function filterUniqueByProperty(arr: any[], prop: string) {
+function filterUniqueByProperty<T>(arr: Array<T>, prop: keyof T) {
 	const uniqueValues = new Set()
 	const uniqueObjects = []
 
@@ -39,9 +30,10 @@ function filterUniqueByProperty(arr: any[], prop: string) {
 }
 
 function filterByType(wines: Wine[]): TypeWine[] {
-	const uniqueTypes = filterUniqueByProperty(wines, "type").map(
-		(wine) => wine.type
-	)
+	const uniqueTypes = filterUniqueByProperty<Wine>(wines, "type")
+		.map((wine) => wine.type)
+		.filter((type) => type !== null)
+	
 	return wines
 		.map((_: Wine, index: number) => {
 			const winesByType = wines.filter(
@@ -57,9 +49,9 @@ function filterByType(wines: Wine[]): TypeWine[] {
 }
 
 function filterByCountry(wines: Wine[]): CountryWine[] {
-	const uniqueCountries = filterUniqueByProperty(wines, "country").map(
-		(wine) => wine.country
-	)
+	const uniqueCountries = filterUniqueByProperty(wines, "country")
+		.map((wine) => wine.country)
+		.filter((country) => country !== null)
 
 	return wines
 		.map((_: Wine, index: number) => {
@@ -76,9 +68,9 @@ function filterByCountry(wines: Wine[]): CountryWine[] {
 }
 
 function filterByAppelation(wines: Wine[]): AppelationWine[] {
-	const uniqueAppelations = filterUniqueByProperty(wines, "appelation").map(
-		(wine) => wine.appelation
-	)
+	const uniqueAppelations = filterUniqueByProperty(wines, "appelation")
+		.map((wine) => wine.appelation)
+		.filter((appelation) => appelation !== null)
 
 	return wines
 		.map((_: Wine, index: number) => {
@@ -101,7 +93,7 @@ const filterWinesBySearchQuery = (originalWines: Wine[], query: string) => {
 	originalWines.forEach((wine: Wine) => {
 		let match = false
 		Object.entries(wine).forEach((property) => {
-			const [key, value] = property
+			const [_, value] = property
 			if (
 				(typeof value === "string" || typeof value == "number") &&
 				value.toString().toLowerCase().includes(query)
