@@ -15,22 +15,22 @@ import { oldLondonFont } from "./util/font/fonts"
 const getColorByType = (type: WineType) => {
 	switch(type) { 
 		case WineType.White: { 
-			return "text-piss-yellow"; 
+			return "before:bg-piss-yellow after:bg-piss-yellow"; 
 		} 
 		case WineType.Red: { 
-			return "text-off-red"; 
+			return "before:bg-off-red after:bg-off-red"; 
 		} 
 		case WineType.Rosé: { 
-			return "text-rosé"; 
+			return "before:bg-rosé after:bg-piss-yellow"; 
 		} 
 		case WineType.Orange: { 
-			return "text-orange"; 
+			return "before:bg-orange after:bg-piss-yellow"; 
 		} 
 		case WineType.Sweet: { 
-			return "text-off-yellow"; 
+			return "before:bg-off-yellow after:bg-piss-yellow"; 
 		} 
 		case WineType.Port: { 
-			return "text-port"; 
+			return "before:bg-port after:bg-piss-yellow"; 
 		} 
 		default: { 
 			return "unknown"; 
@@ -59,9 +59,11 @@ const renderAppelationSections = (wineByAppelation: AppelationWine) => {
 	)
 }
 
-const renderCountrySections = (wineByCountry: CountryWine) => {
+const renderCountrySections = (wineByCountry: CountryWine, typeColor: string) => {
 	return (
-		<section className="pb-10 max-w-3xl justify-self-center w-full">
+		<section className={`after:contet-[''] after:h-2 after:w-2 after:absolute after:top-5 after:left-[-33.5px] after:rounded-full
+			relative mb-10 max-w-3xl justify-self-center w-full 
+			before:content-[''] before:absolute before:left-[-30px] before:top-5 before:block before:h-[calc(100%_-_50px)] before:w-[1.5px] ${typeColor}`}>
 			<h2 className={`capitalize ${oldLondonFont.variable} font-old-london text-4xl`}>
 				{wineByCountry.country}
 			</h2>
@@ -81,15 +83,15 @@ const renderCountrySections = (wineByCountry: CountryWine) => {
 const renderTypeSections = (row: TypeWine, parentIndexKey: number) => {
 	const typeColor = getColorByType(row.type)
 	return (
-		<section key={parentIndexKey}>
+		<div key={parentIndexKey} className="relative">
 			{row.wines.map((wineByCountry: CountryWine, index: number) => {
 				return (
 					<React.Fragment key={index}>
-						{renderCountrySections(wineByCountry)}
+						{renderCountrySections(wineByCountry, typeColor)}
 					</React.Fragment>
 				)
 			})}
-		</section>
+		</div>
 	)
 }
 
