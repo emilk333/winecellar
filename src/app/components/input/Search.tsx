@@ -3,6 +3,7 @@
 import { debounce } from "@/app/util/debounce"
 import { usePathname, useSearchParams, useRouter } from "next/navigation"
 import { useMemo } from "react"
+import { Input } from "./Input"
 
 export default function Search({ placeholder }: { placeholder: string }) {
 	const searchParams = useSearchParams()
@@ -23,19 +24,13 @@ export default function Search({ placeholder }: { placeholder: string }) {
     )
 
 	return (
-		<div className="relative flex flex-1 flex-shrink-0 mb-6">
-			<label htmlFor="search" className="sr-only">
-				Search
-			</label>
-			<input
-				className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500"
-				placeholder={placeholder}
-				onChange={(e) => {
-					handleSearch(e.target.value)
-				}}
-                defaultValue={searchParams.get('query')?.toString()}
+		<div className="relative mb-10 mt-4 max-w-3xl justify-self-center w-full h-full">
+			<Input 
+				message={placeholder}
+				defaultValue={searchParams.get('query')?.toString()}
+				id={"search"}
+				callback={(e) => handleSearch(e.target.value)}
 			/>
-			{/* icon here */}
 		</div>
 	)
 }

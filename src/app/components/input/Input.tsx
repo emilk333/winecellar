@@ -1,18 +1,28 @@
 "use client"
 
 import { FC } from "react"
-import { TableCellComponent } from "../table/TableRow"
 
-export const Input: FC<TableCellComponent> = ({ message, id }) => {
+export type InputProps = {
+	message: number | string | null,
+	defaultValue?: string,
+	id: string,
+	callback?: (e: React.ChangeEvent<HTMLInputElement>) => void
+}
+
+export const Input: FC<InputProps> = ({ message, defaultValue, id, callback}) => {
 	return (
-		<div className="relative">
-			<label htmlFor="search" className="">
+		<div className="w-full">
+			<label htmlFor={id} className="sr-only">
 				{id}
 			</label>
 			<input
-				className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500"
+				className="w-full bg-transparent placeholder:text-black font-sans text-sm border border-paper-600 rounded-sm px-3 py-2 transition duration-300 ease focus:outline-none focus:border-paper-800 hover:border-paper-800 shadow-sm focus:shadow"
 				placeholder={message?.toString()}
+				onChange={(e) => {
+					if (callback) callback(e)
+				}}
 				name={id}
+				defaultValue={defaultValue ? defaultValue: ""}
 			/>
 		</div>
 	)

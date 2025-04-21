@@ -48,7 +48,7 @@ const Modal: FC<ModalProps> = ({ isOpen, onClose, children, message }) => {
 	}, [isOpen])
 
 	return (
-		<dialog ref={dialogRef} onClose={onClose} className="p-3 rounded-sm bg-paper">
+		<dialog ref={dialogRef} onClose={onClose} className="p-3 rounded-sm bg-paper-400 max-w-[360px]">
 			<div ref={dialogInner} className={`flex flex-col font-serif ${cormorantFont.variable} text-sm pb-2`}>
 				{message}
 			</div>

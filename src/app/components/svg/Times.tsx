@@ -29,4 +29,3 @@ export default function TimesIcon({ color }: { color: string }) {
 		</div>
 	)
 }
-

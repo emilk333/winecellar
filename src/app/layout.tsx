@@ -12,7 +12,7 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
 	return (
 		<html lang="en">
-			<body className={`${cormorantFont.variable} font-serif antialiased bg-paper`}>
+			<body className={`${cormorantFont.variable} font-serif antialiased bg-paper-400`}>
 				{children}
 			</body>
 		</html>

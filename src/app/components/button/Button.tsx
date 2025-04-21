@@ -30,7 +30,7 @@ export const Button: FC<ButtonProps> = (buttonConfig) => {
 		)
 	}
 
-	const styling = buttonConfig.stripStyling ? "" : `${buttonConfig.styling} ${rubikFont.variable} justify-center py-0.5 px-3 text-sm text-gray-900 rounded-sm inline-flex items-center`
+	const styling = buttonConfig.stripStyling ? "" : `${buttonConfig.styling} ${rubikFont.variable} justify-center py-0.5 px-3 text-gray-900 rounded-sm inline-flex items-center`
 
 	return (
 		<button onClick={handleCallback} className={styling} disabled={isLoading}>

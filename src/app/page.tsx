@@ -11,37 +11,15 @@ import { TypeWine } from "./dataTransform/dataTransform"
 import { Wine, WineType } from "@/types/schema"
 import { TableRowWithDelete } from "./components/table/TableRowWithDelete"
 import { oldLondonFont } from "./util/font/fonts"
-
-const getColorByType = (type: WineType) => {
-	switch(type) { 
-		case WineType.White: { 
-			return "before:bg-piss-yellow after:bg-piss-yellow"; 
-		} 
-		case WineType.Red: { 
-			return "before:bg-off-red after:bg-off-red"; 
-		} 
-		case WineType.Rosé: { 
-			return "before:bg-rosé after:bg-piss-yellow"; 
-		} 
-		case WineType.Orange: { 
-			return "before:bg-orange after:bg-piss-yellow"; 
-		} 
-		case WineType.Sweet: { 
-			return "before:bg-off-yellow after:bg-piss-yellow"; 
-		} 
-		case WineType.Port: { 
-			return "before:bg-port after:bg-piss-yellow"; 
-		} 
-		default: { 
-			return "unknown"; 
-		} 
-	} 
-}
+import { Tag } from "./components/tag/Tag"
+import { getBgColorByType, getPseudoBgColorByType, getTextAccentColorByType } from "./util/color/ColorMappers"
 
 const renderAppelationSections = (wineByAppelation: AppelationWine) => {
 	return (
 		<section className="pb-6">
-			<h3 className={`font-old-london ${oldLondonFont.variable} capitalize text-xl`}>
+			<h3
+				className={`font-old-london ${oldLondonFont.variable} capitalize text-xl`}
+			>
 				{wineByAppelation.appelation}
 			</h3>
 			<table className="w-full">
@@ -50,7 +28,7 @@ const renderAppelationSections = (wineByAppelation: AppelationWine) => {
 				<tbody>
 					{wineByAppelation.wines.map((wine: Wine, index: number) => (
 						<Suspense key={index}>
-							<TableRowWithDelete row={wine} index={wine.id}/>
+							<TableRowWithDelete row={wine} index={wine.id} />
 						</Suspense>
 					))}
 				</tbody>
@@ -59,12 +37,12 @@ const renderAppelationSections = (wineByAppelation: AppelationWine) => {
 	)
 }
 
-const renderCountrySections = (wineByCountry: CountryWine, typeColor: string) => {
+const renderCountrySections = (wineByCountry: CountryWine) => {
 	return (
-		<section className={`after:contet-[''] after:h-2 after:w-2 after:absolute after:top-5 after:left-[-33.5px] after:rounded-full
-			relative mb-10 max-w-3xl justify-self-center w-full 
-			before:content-[''] before:absolute before:left-[-30px] before:top-5 before:block before:h-[calc(100%_-_50px)] before:w-[1.5px] ${typeColor}`}>
-			<h2 className={`capitalize ${oldLondonFont.variable} font-old-london text-4xl`}>
+		<section>
+			<h2
+				className={`capitalize ${oldLondonFont.variable} font-old-london text-4xl`}
+			>
 				{wineByCountry.country}
 			</h2>
 			{wineByCountry.wines.map(
@@ -81,17 +59,26 @@ const renderCountrySections = (wineByCountry: CountryWine, typeColor: string) =>
 }
 
 const renderTypeSections = (row: TypeWine, parentIndexKey: number) => {
-	const typeColor = getColorByType(row.type)
+	const typeBgColor = getBgColorByType(row.type)
+	const typeTextAccentColor = getTextAccentColorByType(row.type)
+	const typePseudoAccentColor = getPseudoBgColorByType(row.type)
+
 	return (
-		<div key={parentIndexKey} className="relative">
+		<section key={parentIndexKey} className="relative mb-10 max-w-3xl justify-self-center w-full h-full">
+			<Tag
+				color={typeBgColor}
+				accentColor={typeTextAccentColor}
+				pseudoColor={typePseudoAccentColor}
+				data={row.type}
+			/>
 			{row.wines.map((wineByCountry: CountryWine, index: number) => {
 				return (
 					<React.Fragment key={index}>
-						{renderCountrySections(wineByCountry, typeColor)}
+						{renderCountrySections(wineByCountry)}
 					</React.Fragment>
 				)
 			})}
-		</div>
+		</section>
 	)
 }
 
@@ -108,7 +95,7 @@ export default async function Home(props: {
 	return (
 		<div className="items-center justify-items-center min-h-screen pb-20">
 			<main className="w-full ">
-				<Search placeholder={"search..."} />
+				<Search placeholder={"Search"} />
 				<div className="flex items-center justify-center">
 					<div className="w-full block">
 						{transformedData.map((row, index: number) =>
@@ -121,3 +108,4 @@ export default async function Home(props: {
 		</div>
 	)
 }
+

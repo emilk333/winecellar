@@ -1,6 +1,6 @@
 "use client"
 
-import React, { FC, useRef, useState } from "react"
+import React, { FC, useState } from "react"
 import Modal from "./../modal/Modal"
 import { Wine } from "@/types/schema"
 import { Paragraph } from "../text/Text"
@@ -8,23 +8,17 @@ import { TableRow } from "./TableRow"
 import { useRouter } from "next/navigation"
 import { fetchWrapped } from "@/app/util/fetch"
 import { Button } from "../button/Button"
+import DotMenu from "../svg/DotMenu"
 import TimesIcon from "../svg/Times"
-import { MouseTracker } from "../cursor/FollowCursor"
-import { rubikFont } from "@/app/util/font/fonts"
 
 interface TableRowWithDeleteProps {
 	row: Wine
-	index: number
 }
 
-export const TableRowWithDelete: FC<TableRowWithDeleteProps> = ({
-	row,
-	index
-}) => {
-	
+export const TableRowWithDelete: FC<TableRowWithDeleteProps> = ({row}) => {
 	const [isModalOpen, setModalOpen] = useState(false)
 	const router = useRouter()
-	const modalMessage = `You are about to permanently delete ${row.vintage} ${
+	const modalMessage = `You are about to permanently delete: ${row.vintage} ${
 		row.name ?? ""
 	} ${row.producer}?`
 
@@ -42,16 +36,21 @@ export const TableRowWithDelete: FC<TableRowWithDeleteProps> = ({
 		}))
 	}
 
-	const btnConfigTableRow = {
-		name: <div className="flex items-center">
-			<MouseTracker offset={{ x: 10, y: 0 }} elementIdentifier={index}>
-				<TimesIcon color={"fill-red-500"}/>
-				<span className={`pl-1 font-sans text-[10px] ${rubikFont.variable}`}>Delete</span>
-			</MouseTracker>
+	const btnConfigDeleteWine = {
+		name: <div className="flex items-center justify-center">
+			<TimesIcon color={"text-red-600 fill-current"}/>
+			<p className="pl-1 font-sans text-[10px]">Delete</p>
 		</div>,
 		stripStyling: false,
-		styling: `w-full min-h-4`,
+		styling: `min-h-4`,
 		callback: () => openModal(),
+	}
+
+	const btnConfigTableOptions = {
+		name: <DotMenu color={"fill-red-500"}/>,
+		stripStyling: false,
+		styling: `min-h-4`,
+		callback: () => {},
 	}
 
 	const btnConfigCancel = {
@@ -61,7 +60,7 @@ export const TableRowWithDelete: FC<TableRowWithDeleteProps> = ({
 		callback: () => closeModal(),
 	}
 	
-	const btnConfigDeleteRow = {
+	const btnConfigModalDelete = {
 		name: `I understand, delete this wine`,
 		stripStyling: false,
 		styling: "me-2 w-full bg-red-600 hover:bg-red-700 disabled:opacity-50 transition-opacity text-white text-[10px] font-sans font-bold",
@@ -72,13 +71,14 @@ export const TableRowWithDelete: FC<TableRowWithDeleteProps> = ({
 			})
 		}
 	}
+
 	return (
 		<React.Fragment>
 			<TableRow
 				row={row}
-				index={index}
 				Component={Paragraph}
-				buttonConfig={btnConfigTableRow}
+				optionsButtonConfig={btnConfigTableOptions}
+				deleteButtonConfig={btnConfigDeleteWine}
 			/>
 			<tr>
 				<td>
@@ -87,7 +87,7 @@ export const TableRowWithDelete: FC<TableRowWithDeleteProps> = ({
 						onClose={closeModal}
 						message={modalMessage}
 					>
-						<Button {...btnConfigDeleteRow}/>
+						<Button {...btnConfigModalDelete}/>
 						<Button {...btnConfigCancel}/>
 					</Modal>
 				</td>
