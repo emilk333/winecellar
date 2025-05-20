@@ -4,6 +4,7 @@ import { FC, useState } from "react"
 import { Spinner } from "../loading/Spinner"
 import React from "react"
 import { rubikFont } from "@/app/util/font/fonts"
+import Loading from "../loading/Loading"
 
 export interface ButtonProps {
 	name: string | React.JSX.Element,
@@ -21,20 +22,11 @@ export const Button: FC<ButtonProps> = (buttonConfig) => {
 		setLoading(() => false)
 	}
 
-	const loading = () => {
-		return(
-			<React.Fragment>
-				<Spinner />
-				<span className="pl-1.5">Loading...</span>
-			</React.Fragment>
-		)
-	}
-
 	const styling = buttonConfig.stripStyling ? "" : `${buttonConfig.styling} ${rubikFont.variable} justify-center py-0.5 px-3 text-gray-900 rounded-sm inline-flex items-center`
 
 	return (
 		<button onClick={handleCallback} className={styling} disabled={isLoading}>
-			{isLoading ? loading() : buttonConfig?.name}
+			{isLoading ? <Loading/> : buttonConfig?.name}
 		</button>
 	)
 }

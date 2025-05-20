@@ -5,21 +5,21 @@ import {
 } from "./dataTransform/dataTransform"
 import React, { Suspense } from "react"
 import Search from "./components/input/Search"
-import AddWine from "./features/AddWine"
+import { ErrorTemplate } from "./features/ErrorTemplate"
 import { getAllWine } from "./queries/wines"
 import { TypeWine } from "./dataTransform/dataTransform"
-import { Wine, WineType } from "@/types/schema"
+import { Wine } from "@/types/schema"
 import { TableRowWithDelete } from "./components/table/TableRowWithDelete"
 import { oldLondonFont } from "./util/font/fonts"
 import { Tag } from "./components/tag/Tag"
 import { getBgColorByType, getPseudoBgColorByType, getTextAccentColorByType } from "./util/color/ColorMappers"
+import SubmitWineWrapper from "./features/SubmitWineWrapper"
+import AddWine from "./features/AddWine"
 
 const renderAppelationSections = (wineByAppelation: AppelationWine) => {
 	return (
 		<section className="pb-6">
-			<h3
-				className={`font-old-london ${oldLondonFont.variable} capitalize text-xl`}
-			>
+			<h3 className={`font-old-london ${oldLondonFont.variable} capitalize text-xl`}>
 				{wineByAppelation.appelation}
 			</h3>
 			<table className="w-full">
@@ -28,7 +28,7 @@ const renderAppelationSections = (wineByAppelation: AppelationWine) => {
 				<tbody>
 					{wineByAppelation.wines.map((wine: Wine, index: number) => (
 						<Suspense key={index}>
-							<TableRowWithDelete row={wine} index={wine.id} />
+							<TableRowWithDelete row={wine}/>
 						</Suspense>
 					))}
 				</tbody>
@@ -40,9 +40,7 @@ const renderAppelationSections = (wineByAppelation: AppelationWine) => {
 const renderCountrySections = (wineByCountry: CountryWine) => {
 	return (
 		<section>
-			<h2
-				className={`capitalize ${oldLondonFont.variable} font-old-london text-4xl`}
-			>
+			<h2 className={`capitalize ${oldLondonFont.variable} font-old-london text-4xl`}>
 				{wineByCountry.country}
 			</h2>
 			{wineByCountry.wines.map(
@@ -88,22 +86,26 @@ export default async function Home(props: {
 	const query = (await (await props.searchParams).query) ?? ""
 	const [wines, error] = await getAllWine()
 
-	if (error || !wines) return <div>Implement error handling pls</div>
+	if (error || !wines) return <ErrorTemplate {...error}/>
 
 	const transformedData = transformWinesIntoStructuralData(wines, query)
 
 	return (
 		<div className="items-center justify-items-center min-h-screen pb-20">
-			<main className="w-full ">
-				<Search placeholder={"Search"} />
-				<div className="flex items-center justify-center">
+			<main className="w-full flex items-center flex-col max-w-3xl">
+				<div className="w-full mb-10 mt-8 flex items-center justify-center space-x-2 -ml-4">
+					<Search placeholder={"Search..."} />
+					<SubmitWineWrapper>
+						<AddWine />
+					</SubmitWineWrapper>
+				</div>
+				<div className="w-full flex items-center justify-center">
 					<div className="w-full block">
 						{transformedData.map((row, index: number) =>
 							renderTypeSections(row, index)
 						)}
 					</div>
 				</div>
-				<AddWine />
 			</main>
 		</div>
 	)

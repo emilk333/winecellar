@@ -39,7 +39,7 @@ export const TableRowWithDelete: FC<TableRowWithDeleteProps> = ({row}) => {
 	const btnConfigDeleteWine = {
 		name: <div className="flex items-center justify-center">
 			<TimesIcon color={"text-red-600 fill-current"}/>
-			<p className="pl-1 font-sans text-[10px]">Delete</p>
+			<p className="pl-1 font-sans text-[10px] mt-0.5">Delete</p>
 		</div>,
 		stripStyling: false,
 		styling: `min-h-4`,
@@ -86,6 +86,7 @@ export const TableRowWithDelete: FC<TableRowWithDeleteProps> = ({row}) => {
 						isOpen={isModalOpen}
 						onClose={closeModal}
 						message={modalMessage}
+						childStyles=""
 					>
 						<Button {...btnConfigModalDelete}/>
 						<Button {...btnConfigCancel}/>

@@ -5,10 +5,11 @@ interface ModalProps {
 	isOpen: boolean
 	onClose: () => void
 	children: ReactNode
-	message: string
+	message: string,
+	childStyles: string
 }
 
-const Modal: FC<ModalProps> = ({ isOpen, onClose, children, message }) => {
+const Modal: FC<ModalProps> = ({ isOpen, onClose, children, message, childStyles}) => {
 	const dialogRef = useRef<HTMLDialogElement>(null)
 	const dialogInner = useRef<HTMLDivElement>(null)
 
@@ -49,10 +50,10 @@ const Modal: FC<ModalProps> = ({ isOpen, onClose, children, message }) => {
 
 	return (
 		<dialog ref={dialogRef} onClose={onClose} className="p-3 rounded-sm bg-paper-400 max-w-[360px]">
-			<div ref={dialogInner} className={`flex flex-col font-serif ${cormorantFont.variable} text-sm pb-2`}>
+			<div ref={dialogInner} className={`flex flex-col font-serif ${rubikFont.className} font-sans text-sm pb-2`}>
 				{message}
 			</div>
-			<div className="flex" id="wt-inner-modal">
+			<div className={`flex ${childStyles}`} id="wt-inner-modal">
 				{children}
 			</div>
 		</dialog>

@@ -21,3 +21,6 @@ export type WinePrice = {
   estimatedCurrentValue: number
 }
 
+export interface SimpleError {
+  message?: string | undefined
+}

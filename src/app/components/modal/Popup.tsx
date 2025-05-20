@@ -20,6 +20,8 @@ const Popup: FC<PopupProps> = (props) => {
 		const popupElement = popupRef.current
 
 		if (popupElement) {
+			popupElement.focus()
+			
 			const handleDialogClick = (event: MouseEvent) => {
 				if ((event.target as HTMLElement) != popupElement) {
 					togglePopup()

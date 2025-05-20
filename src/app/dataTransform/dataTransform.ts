@@ -37,7 +37,7 @@ function filterByType(wines: Wine[]): TypeWine[] {
 	return wines
 		.map((_: Wine, index: number) => {
 			const winesByType = wines.filter(
-				(whiteWine: Wine) => whiteWine.type === uniqueTypes[index]
+				(wine: Wine) => wine.type === uniqueTypes[index]
 			)
 
 			return {
@@ -56,8 +56,8 @@ function filterByCountry(wines: Wine[]): CountryWine[] {
 	return wines
 		.map((_: Wine, index: number) => {
 			const winesByCountry = wines.filter(
-				(whiteWine: Wine) =>
-					whiteWine.country === uniqueCountries[index]
+				(wine: Wine) =>
+					wine.country === uniqueCountries[index]
 			)
 			return {
 				country: uniqueCountries[index],
@@ -75,8 +75,8 @@ function filterByAppelation(wines: Wine[]): AppelationWine[] {
 	return wines
 		.map((_: Wine, index: number) => {
 			const winesByAppelation = wines.filter(
-				(whiteWine: Wine) =>
-					whiteWine.appelation === uniqueAppelations[index]
+				(wine: Wine) =>
+					wine.appelation === uniqueAppelations[index]
 			)
 
 			return {
@@ -89,7 +89,6 @@ function filterByAppelation(wines: Wine[]): AppelationWine[] {
 
 const filterWinesBySearchQuery = (originalWines: Wine[], query: string) => {
 	let searchResults: Wine[] = []
-
 	originalWines.forEach((wine: Wine) => {
 		let match = false
 		Object.entries(wine).forEach((property) => {

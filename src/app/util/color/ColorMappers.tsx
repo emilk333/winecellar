@@ -2,6 +2,12 @@ import { WineType } from "@/types/schema";
 
 const getPseudoBgColorByType = (type: WineType) => {
 	switch(type) { 
+		case WineType.Champagne: { 
+			return "after:bg-gradient-yellow-green-tint"; 
+		} 
+		case WineType.Sparkling: { 
+			return "after:bg-gradient-yellow-green-tint"; 
+		} 
 		case WineType.White: { 
 			return "after:bg-gradient-piss-yellow"; 
 		} 
@@ -28,6 +34,12 @@ const getPseudoBgColorByType = (type: WineType) => {
 
 const getBgColorByType = (type: WineType) => {
 	switch(type) { 
+		case WineType.Champagne: { 
+			return "bg-yellow-green-tint-400"; 
+		} 
+		case WineType.Sparkling: { 
+			return "bg-yellow-green-tint-400"; 
+		} 
 		case WineType.White: { 
 			return "bg-piss-yellow-400"; 
 		} 
@@ -44,7 +56,7 @@ const getBgColorByType = (type: WineType) => {
 			return "bg-off-yellow-400"; 
 		} 
 		case WineType.Port: { 
-			return "bg-port-400"; 
+			return "bg-port-800"; 
 		} 
 		default: { 
 			return "unknown"; 
@@ -54,6 +66,12 @@ const getBgColorByType = (type: WineType) => {
 
 const getTextAccentColorByType = (type: WineType) => {
 	switch(type) { 
+		case WineType.Champagne: { 
+			return "text-yellow-green-tint-800"; 
+		} 
+		case WineType.Sparkling: { 
+			return "text-yellow-green-tint-800"; 
+		} 
 		case WineType.White: { 
 			return "text-piss-yellow-800"; 
 		} 
@@ -61,13 +79,13 @@ const getTextAccentColorByType = (type: WineType) => {
 			return "text-off-red-100"; 
 		} 
 		case WineType.Rosé: { 
-			return "text-rosé-400"; 
+			return "text-rosé-800"; 
 		} 
 		case WineType.Orange: { 
-			return "text-orange-400"; 
+			return "text-orange-800"; 
 		} 
 		case WineType.Sweet: { 
-			return "text-off-yellow-400"; 
+			return "text-off-yellow-800"; 
 		} 
 		case WineType.Port: { 
 			return "text-port-400"; 

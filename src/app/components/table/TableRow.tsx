@@ -3,7 +3,6 @@ import { Button, ButtonProps } from "../button/Button"
 import { Wine } from "@/types/schema"
 import { WinePrice } from "@/types/generalTypes"
 import { FC } from "react"
-import { FakeRow } from "@/app/features/AddWine"
 import { InputProps } from "../input/Input"
 import Popup from "../modal/Popup"
 
@@ -14,7 +13,7 @@ export interface TableCellComponent extends InputProps{
 }
 
 interface TableRowProps {
-	row?: Wine | FakeRow
+	row?: Wine
 	Component: FC<TableCellComponent>
 	optionsButtonConfig?: ButtonProps
 	deleteButtonConfig?: ButtonProps
@@ -34,19 +33,19 @@ export const TableRow: FC<TableRowProps> = ({
 	return (
 		<tr className="relative flex flex-row w-full text-sm">
 			<td className="basis-1/12">
-				<Component message={row.vintage} id="vintage" />
+				<Component message={row.vintage} id="vintage" displayLable={false} />
 			</td>
 			<td className="basis-4/12">
-				<Component message={row.name} id="name" />
+				<Component message={row.name} id="name" displayLable={false} />
 			</td>
 			<td className="basis-4/12">
-				<Component message={row.producer} id="producer" />
+				<Component message={row.producer} id="producer" displayLable={false} />
 			</td>
 			<td className="basis-3/12">
-				<Component message={row.appelation} id="appelation" />
+				<Component message={row.appelation} id="appelation" displayLable={false} />
 			</td>
 			<td className="basis-1/12 text-right">
-				<Component message={price} id="price" />
+				<Component message={price} id="price" displayLable={false} />
 			</td>
 			<td className="flex items-center ml-3">
 				{optionsButtonConfig && deleteButtonConfig &&

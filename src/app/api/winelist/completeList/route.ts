@@ -5,10 +5,60 @@ import { NextRequest, NextResponse } from 'next/server'
 */
 export async function GET(req: NextRequest) {
     
-    // Verify this is the data structure i want to use.. 
-    // Verify if this model is possible for all types of wine
-    // Consider things such as VDP, DOCG or other stuff
+    // TODO IMPLEMENT QUANTITY
     const fakeJsonResponseSingleWine = [
+        {
+            type: "port",
+            uuid: 122,
+            vintage: 2020,
+            country: "france",
+            name: "P2",
+            producer: "Dom Perignon",
+            appelation: "Champagne",
+            price: {
+                buyingPrice: 1300,
+                estimatedCurrentValue: 1300
+            }
+        },
+        {
+            type: "sweet",
+            uuid: 1227,
+            vintage: 2020,
+            country: "france",
+            name: "P2",
+            producer: "Dom Perignon",
+            appelation: "Champagne",
+            price: {
+                buyingPrice: 1300,
+                estimatedCurrentValue: 1300
+            }
+        },
+        {
+            type: "orange",
+            uuid: 1228,
+            vintage: 2020,
+            country: "france",
+            name: "P2",
+            producer: "Dom Perignon",
+            appelation: "Champagne",
+            price: {
+                buyingPrice: 1300,
+                estimatedCurrentValue: 1300
+            }
+        },
+        {
+            type: "sparkling",
+            uuid: 1229,
+            vintage: 2020,
+            country: "france",
+            name: "P2",
+            producer: "Dom Perignon",
+            appelation: "Champagne",
+            price: {
+                buyingPrice: 1300,
+                estimatedCurrentValue: 1300
+            }
+        },
         {
             type: "white",
             uuid: 1231,

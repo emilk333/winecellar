@@ -1,20 +1,21 @@
 import { db } from "@/db"
 import { wines } from "../../../drizzle/schema"
 import { Wine } from "@/types/schema"
+import { SimpleError } from "@/types/generalTypes"
+import { fetchWrapped } from "../util/fetch"
 
-interface WineError {
-	message: string
-	// Do some better error handling.. Maybe construct Error types based on Drizzle own types. 
-}
 
-export async function getAllWine(): Promise<[Wine[] | undefined, WineError | undefined]> {
+export async function getAllWine(): Promise<[Wine[] | undefined, SimpleError | undefined]> {
+	// const [y, x] = await fetchWrapped(fetch(`http://localhost:3001/api/winelist/completeList`))
+	// //@ts-ignore
+	// return [y, undefined]
+
 	try {
 		const data = (await db.select().from(wines)) as Wine[] // Thanks Drizzle ...
 		return [data, undefined]
 	} catch (e) {
 		if (e instanceof Error) {
-			console.error(`Error fetching wines: ${e.message}`)
-			const error: WineError = { message: e.message }
+			const error: SimpleError = { message: e.message }
 			return [undefined, error]
 		}
 		return [undefined, { message: "Unknown error" }]

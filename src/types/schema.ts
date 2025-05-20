@@ -7,6 +7,8 @@ type ModifyProperty<T, K extends keyof T, NewType> = {
 }
 
 export enum WineType {
+	Sparkling = "sparkling",
+	Champagne = "champagne",
 	White = "white",
 	Red = "red",
 	Rosé = "rose",
