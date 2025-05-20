@@ -20,6 +20,9 @@ export default {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        'coal': {
+          400: "#382b25"
+        },
         'confirm-green': {
           400: 'rgb(72, 173, 77)',
           800: 'rgb(65, 163, 70)',

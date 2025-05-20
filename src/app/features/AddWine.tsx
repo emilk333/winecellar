@@ -4,7 +4,7 @@ import Submit from "../components/form/Submit"
 
 export default function AddWine() {
 	return (
-		<div className="w-full relative mb-1 max-w-3xl justify-self-center w-full h-full">
+		<div className="w-full relative mb-1 max-w-screen-lg justify-self-center w-full h-full">
 			<form action={createWine}>
 				<div className="flex space-x-2">
 					<Input message={""} id="vintage" displayLable={true} />

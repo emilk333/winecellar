@@ -19,7 +19,7 @@ import AddWine from "./features/AddWine"
 const renderAppelationSections = (wineByAppelation: AppelationWine) => {
 	return (
 		<section className="pb-6">
-			<h3 className={`font-old-london ${oldLondonFont.variable} capitalize text-xl`}>
+			<h3 className={`font-old-london ${oldLondonFont.variable} capitalize text-2xl`}>
 				{wineByAppelation.appelation}
 			</h3>
 			<table className="w-full">
@@ -39,8 +39,8 @@ const renderAppelationSections = (wineByAppelation: AppelationWine) => {
 
 const renderCountrySections = (wineByCountry: CountryWine) => {
 	return (
-		<section>
-			<h2 className={`capitalize ${oldLondonFont.variable} font-old-london text-4xl`}>
+		<section className="w-[calc(100%-0.5rem)] pb-3 text-coal-400">
+			<h2 className={`capitalize ${oldLondonFont.variable} font-old-london text-5xl pb-1`}>
 				{wineByCountry.country}
 			</h2>
 			{wineByCountry.wines.map(
@@ -62,7 +62,7 @@ const renderTypeSections = (row: TypeWine, parentIndexKey: number) => {
 	const typePseudoAccentColor = getPseudoBgColorByType(row.type)
 
 	return (
-		<section key={parentIndexKey} className="relative mb-10 max-w-3xl justify-self-center w-full h-full">
+		<section key={parentIndexKey} className="relative mb-10 max-w-screen-lg justify-self-center w-full h-full">
 			<Tag
 				color={typeBgColor}
 				accentColor={typeTextAccentColor}
@@ -91,9 +91,9 @@ export default async function Home(props: {
 	const transformedData = transformWinesIntoStructuralData(wines, query)
 
 	return (
-		<div className="items-center justify-items-center min-h-screen pb-20">
-			<main className="w-full flex items-center flex-col max-w-3xl">
-				<div className="w-full mb-10 mt-8 flex items-center justify-center space-x-2 -ml-4">
+		<div className="items-center justify-center min-h-screen pb-20 flex">
+			<main className="lg:px-0 px-4 w-full flex items-center flex-col max-w-screen-lg">
+				<div className="w-full mb-10 mt-8 flex items-center justify-center space-x-2 lg:-ml-4">
 					<Search placeholder={"Search..."} />
 					<SubmitWineWrapper>
 						<AddWine />

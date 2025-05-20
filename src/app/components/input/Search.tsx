@@ -25,7 +25,7 @@ export default function Search({ placeholder }: { placeholder: string }) {
 	)
 
 	return (
-		<div className="relative max-w-3xl justify-self-center w-full h-full">
+		<div className="relative max-w-screen-lg justify-self-center w-full h-full">
 			<Input
 				message={placeholder}
 				defaultValue={searchParams.get("query")?.toString()}

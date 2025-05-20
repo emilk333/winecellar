@@ -1,12 +1,12 @@
 ### TODO:
 
 #### Account for multiple of same bottle 
-#### Implement sparkling
+#### Docker
+#### Figure out how to deploy this motherfucker 
+
 #### Implement images 
 #### Implement prices hover + ,- 
 #### Implement basic or full auth 
-#### Figure out how to deploy this motherfucker 
-
 
 
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).

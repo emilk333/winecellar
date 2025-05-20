@@ -49,11 +49,11 @@ const Modal: FC<ModalProps> = ({ isOpen, onClose, children, message, childStyles
 	}, [isOpen])
 
 	return (
-		<dialog ref={dialogRef} onClose={onClose} className="p-3 rounded-sm bg-paper-400 max-w-[360px]">
-			<div ref={dialogInner} className={`flex flex-col font-serif ${rubikFont.className} font-sans text-sm pb-2`}>
+		<dialog ref={dialogRef} onClose={onClose} className="px-5 py-7 rounded-sm bg-paper-400 max-w-xl">
+			<div ref={dialogInner} className={`flex flex-col font-serif ${rubikFont.className} font-sans text-2xl pb-6`}>
 				{message}
 			</div>
-			<div className={`flex ${childStyles}`} id="wt-inner-modal">
+			<div className={`flex lg:space-y-0 space-y-3 ${childStyles}`} id="wt-inner-modal">
 				{children}
 			</div>
 		</dialog>

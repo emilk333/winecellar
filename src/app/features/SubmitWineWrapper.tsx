@@ -25,14 +25,14 @@ export default function SubmitWineWrapper({
 	const btnConfigOpenModal = {
 		name: "New +",
 		stripStyling: false,
-		styling: `me-2 min-w-16 bg-confirm-green-400 hover:bg-confirm-green-800 disabled:opacity-50 transition-opacity text-white text-[10px] font-sans font-bold ${rubikFont.variable} justify-center py-2 px-3 text-gray-900 rounded-sm inline-flex items-center`,
+		styling: `lg:me-2 min-w-20 bg-confirm-green-400 hover:bg-confirm-green-800 disabled:opacity-50 transition-opacity text-white text-sm font-sans font-bold ${rubikFont.variable} justify-center py-2.5 px-3 text-gray-900 rounded-sm inline-flex items-center`,
 		callback: () => openModal(),
 	}
 
 	const btnConfigCancel = {
 		name: "Cancel",
 		stripStyling: false,
-		styling: "border border-slate-200 text-[10px] font-sans w-full",
+		styling: "border border-slate-200 text-sm font-sans w-full",
 		callback: () => closeModal(),
 	}
 	

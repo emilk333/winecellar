@@ -3,7 +3,6 @@
 import React, { FC, useState } from "react"
 import Modal from "./../modal/Modal"
 import { Wine } from "@/types/schema"
-import { Paragraph } from "../text/Text"
 import { TableRow } from "./TableRow"
 import { useRouter } from "next/navigation"
 import { fetchWrapped } from "@/app/util/fetch"
@@ -39,7 +38,7 @@ export const TableRowWithDelete: FC<TableRowWithDeleteProps> = ({row}) => {
 	const btnConfigDeleteWine = {
 		name: <div className="flex items-center justify-center">
 			<TimesIcon color={"text-red-600 fill-current"}/>
-			<p className="pl-1 font-sans text-[10px] mt-0.5">Delete</p>
+			<p className="pl-1 font-sans text-sm mt-0.5">Delete</p>
 		</div>,
 		stripStyling: false,
 		styling: `min-h-4`,
@@ -56,14 +55,14 @@ export const TableRowWithDelete: FC<TableRowWithDeleteProps> = ({row}) => {
 	const btnConfigCancel = {
 		name: "Cancel",
 		stripStyling: false,
-		styling: "border border-slate-200 text-[10px] font-sans",
+		styling: "border border-slate-200 text-sm font-sans",
 		callback: () => closeModal(),
 	}
 	
 	const btnConfigModalDelete = {
 		name: `I understand, delete this wine`,
 		stripStyling: false,
-		styling: "me-2 w-full bg-red-600 hover:bg-red-700 disabled:opacity-50 transition-opacity text-white text-[10px] font-sans font-bold",
+		styling: "me-2 w-full bg-red-600 hover:bg-red-700 disabled:opacity-50 transition-opacity text-white text-sm font-sans font-bold",
 		callback: async () => {
 			return deleteWine(row.id).then(() => {
 				closeModal()
@@ -76,7 +75,6 @@ export const TableRowWithDelete: FC<TableRowWithDeleteProps> = ({row}) => {
 		<React.Fragment>
 			<TableRow
 				row={row}
-				Component={Paragraph}
 				optionsButtonConfig={btnConfigTableOptions}
 				deleteButtonConfig={btnConfigDeleteWine}
 			/>
@@ -86,7 +84,7 @@ export const TableRowWithDelete: FC<TableRowWithDeleteProps> = ({row}) => {
 						isOpen={isModalOpen}
 						onClose={closeModal}
 						message={modalMessage}
-						childStyles=""
+						childStyles="lg:flex-row flex-col"
 					>
 						<Button {...btnConfigModalDelete}/>
 						<Button {...btnConfigCancel}/>
