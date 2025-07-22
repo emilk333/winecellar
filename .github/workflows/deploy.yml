@@ -16,18 +16,10 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: "21"
-
-      - name: Setup Bun
-        uses: oven-sh/setup-bun@v1
-        with:
-          bun-version: latest
+          node-version: "18"
 
       - name: Install dependencies with npm
         run: npm ci
-
-      - name: Install dependencies with Bun
-        run: bun install
 
       - name: Deploy
         env:
