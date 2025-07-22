@@ -1,24 +1,16 @@
-import { type SSTConfig } from "sst";
-import { NextjsSite } from "sst/constructs";
+// eslint-disable-next-line @typescript-eslint/triple-slash-reference
+//// <reference path="./.sst/platform/config.d.ts" />
 
-export default {
-  config(_input) {
+export default $config({
+  app(input) {
     return {
-      name: "t3-sst",
-      region: "us-east-1",
+      name: "winetracker",
+      removal: input?.stage === "production" ? "retain" : "remove",
+      protect: ["production"].includes(input?.stage),
+      home: "aws",
     };
   },
-  stacks(app) {
-    app.stack(function Site({ stack }) {
-      const site = new NextjsSite(stack, "site", {
-        environment: {
-          DATABASE_URL: process.env.DATABASE_URL!,
-        },
-      });
-
-      stack.addOutputs({
-        SiteUrl: site.url,
-      });
-    });
-  },
-} satisfies SSTConfig;
+  async run() {
+    new sst.aws.Nextjs("MyWeb");
+  }
+});
