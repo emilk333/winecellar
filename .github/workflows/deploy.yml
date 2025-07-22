@@ -27,7 +27,7 @@ jobs:
         run: npm ci
 
       - name: Install dependencies with Bun
-        run: bun install --frozen-lockfile
+        run: bun install
 
       - name: Deploy
         env:
