@@ -3,11 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
     "build": "next build",
-    "start": "next start",
+    "dev": "next dev --turbopack",
+    "introspect": "drizzle-kit pull",
     "lint": "next lint",
-    "introspect": "drizzle-kit pull"
+    "start": "next start",
+    "sso": "aws sso login --sso-session=emilk333"
   },
   "dependencies": {
     "@supabase/auth-helpers-nextjs": "^0.10.0",
@@ -17,7 +18,8 @@
     "next": "15.1.4",
     "postgres": "^3.4.5",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "sst": "3.17.10"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
