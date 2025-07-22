@@ -18,8 +18,16 @@ jobs:
         with:
           node-version: "21"
 
-      - name: Install dependencies
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+
+      - name: Install dependencies with npm
         run: npm ci
+
+      - name: Install dependencies with Bun
+        run: bun install --frozen-lockfile
 
       - name: Deploy
         env:
