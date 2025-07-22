@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "build": "next build",
+    "next-build": "next build",
+    "build": "bun run build",
     "dev": "next dev --turbopack",
     "introspect": "drizzle-kit pull",
     "lint": "next lint",
