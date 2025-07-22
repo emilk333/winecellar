@@ -40,8 +40,12 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
+<<<<<<< HEAD
 # sst
 .sst
 
 # open-next
 .open-next
+=======
+/.sst/
+>>>>>>> ab74c84 (changed sst config)
