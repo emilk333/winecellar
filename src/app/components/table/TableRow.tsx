@@ -21,6 +21,11 @@ export const TableRow: FC<TableRowProps> = ({
 	optionsButtonConfig,
 	deleteButtonConfig
 }) => {
+	const { modifyWineQuantity, isLoading } = useWineQuantity({
+		changeWineQuantity,
+		deleteWine,
+	})
+	
 	if (!row) return
 
 	// TODO this should be a generic component. Its clearly not .. 
@@ -28,10 +33,6 @@ export const TableRow: FC<TableRowProps> = ({
 	const rowPrice = row.price as WinePrice | null // TODO Stupid hack - define type from drizzle
 	const price = rowPrice?.buyingPrice ? thousandCommaSeparator(rowPrice.buyingPrice) : ""
 	
-	const { modifyWineQuantity, isLoading } = useWineQuantity({
-		changeWineQuantity,
-		deleteWine,
-	})
 
 	return (
 		<tr className="relative flex flex-row w-full text-lg">
