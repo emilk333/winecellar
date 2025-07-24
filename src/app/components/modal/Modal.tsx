@@ -1,4 +1,4 @@
-import { cormorantFont, rubikFont } from "@/app/util/font/fonts"
+import { rubikFont } from "@/app/util/font/fonts"
 import { FC, ReactNode, useEffect, useRef } from "react"
 
 interface ModalProps {

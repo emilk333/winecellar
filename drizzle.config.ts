@@ -5,8 +5,13 @@ import { loadEnvConfig } from "@next/env"
 loadEnvConfig(cwd())
 
 export default defineConfig({
-	dialect: "postgresql",
-	dbCredentials: {
-		url: process.env.DATABASE_URL!,
-	},
+  schema: "./db/schema.ts",
+  out: "./drizzle",
+  dialect: "postgresql",
+  schemaFilter: "public",
+  verbose: true,
+  strict: true,
+  dbCredentials: {
+    url: process.env.DATABASE_URL as string,
+  },
 })

@@ -30,7 +30,7 @@ const Popup: FC<PopupProps> = (props) => {
 			document.addEventListener("click", handleDialogClick)
 			return () => document.removeEventListener("click", handleDialogClick)
 		}
-	}, [isOpen])
+	}, [isOpen, togglePopup])
 
 	return (
 		<React.Fragment>

@@ -1,5 +1,7 @@
 import { Wine, WineType } from "@/types/schema"
 
+// THIS SHOULD BE HOOKS
+
 export interface TypeWine {
 	type: WineType
 	wines: CountryWine[]
@@ -88,7 +90,7 @@ function filterByAppelation(wines: Wine[]): AppelationWine[] {
 }
 
 const filterWinesBySearchQuery = (originalWines: Wine[], query: string) => {
-	let searchResults: Wine[] = []
+	const searchResults: Wine[] = []
 	originalWines.forEach((wine: Wine) => {
 		let match = false
 		Object.entries(wine).forEach((property) => {

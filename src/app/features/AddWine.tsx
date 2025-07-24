@@ -9,6 +9,7 @@ export default function AddWine() {
 				<div className="flex space-x-2">
 					<Input message={""} id="vintage" displayLable={true} />
 					<Input message={""} id="price" displayLable={true} />
+					<Input message={""} id="quantity" displayLable={true} />
 				</div>
 				<Input message={""} id="name" displayLable={true} />
 				<Input message={""} id="producer" displayLable={true} />

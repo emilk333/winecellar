@@ -13,7 +13,7 @@ export default function SubmitWineWrapper({
 	const closeModal = () => setModalOpen(false)
 
 	useEffect(() => {
-		document.addEventListener("submit", (e) => {
+		document.addEventListener("submit", () => {
 			// This is a retarded hack. Figure out a way to close the modal after data has been submitted.
 			const APPROX_TIME_OF_PROMISE_RESOLVE = 1250
 			setTimeout(() => {

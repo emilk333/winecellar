@@ -16,4 +16,6 @@ export const wines = pgTable("wines", {
 	producer: text(),
 	appelation: text(),
 	price: json(),
+	// You can use { mode: "bigint" } if numbers are exceeding js number limitations
+	quantity: bigint({ mode: "number" }).default(sql`'1'`),
 });

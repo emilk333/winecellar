@@ -1,9 +1,9 @@
-import { NextRequest, NextResponse } from 'next/server'
+import {  NextResponse } from 'next/server'
 
 /**
  * This endpoint is only for testing with static data. 
 */
-export async function GET(req: NextRequest) {
+export async function GET() {
     
     // TODO IMPLEMENT QUANTITY
     const fakeJsonResponseSingleWine = [

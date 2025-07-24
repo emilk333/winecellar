@@ -1,17 +1,18 @@
+
 'use server'
 import { createClient } from '@/app/util/supabase/server';
 import { revalidatePath } from 'next/cache';
  
-export async function deleteWine(id: number) {
-
+export async function changeWineQuantity(id: number, newQuantity: number) {
+    
     const { error } = await (await createClient())
         .from('wines')
-        .delete()
+        .update({ quantity: newQuantity})
         .eq('id', id)
 
-	if (error) {
-		console.error(`Wine deletion failed: ${error}`)
-	}
+    if (error) {
+        console.error(`Wine quantity modification failed: ${error}`)
+    }
     
     revalidatePath("/")
 }

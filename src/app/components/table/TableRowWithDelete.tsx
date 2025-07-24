@@ -9,6 +9,8 @@ import { fetchWrapped } from "@/app/util/fetch"
 import { Button } from "../button/Button"
 import DotMenu from "../svg/DotMenu"
 import TimesIcon from "../svg/Times"
+import { changeWineQuantity } from "@/app/actions/changeWineQuantity"
+import { useWineQuantity } from "@/app/hooks/modifyWineQuantity"
 
 interface TableRowWithDeleteProps {
 	row: Wine
@@ -23,6 +25,8 @@ export const TableRowWithDelete: FC<TableRowWithDeleteProps> = ({row}) => {
 
 	const openModal = () => setModalOpen(true)
 	const closeModal = () => setModalOpen(false)
+
+	// Why use a route handler, when you can call an action directly???? 
 	const deleteWine = async (id: number) => {
 		const payload = { id: id }
 

@@ -20,7 +20,8 @@ export async function createWine(formData: FormData) {
             price: {
                 buyingPrice: formValues?.buyingPrice ?? Number.MIN_VALUE,
                 estimatedCurrentValue: formValues?.estimatedCurrentValue ?? Number.MIN_VALUE
-            }
+            },
+            quantity: formValues?.quantity ?? 1
 		})
  
 	if (error) {

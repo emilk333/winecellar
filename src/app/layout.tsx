@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 export default function RootLayout({
 	children,
 	modal,
-}: Readonly<{ children: React.ReactNode, modal: React.ReactNode }>) {
+}: any) {
 	return (
 		<html lang="en">
 			<body className={`${cormorantFont.variable} font-serif antialiased bg-paper-400`}>

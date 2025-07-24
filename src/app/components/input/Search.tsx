@@ -10,19 +10,17 @@ export default function Search({ placeholder }: { placeholder: string }) {
 	const pathname = usePathname()
 	const { replace } = useRouter()
 
-	const handleSearch = useMemo(
-		() =>
-			debounce((term: string) => {
-				const params = new URLSearchParams(searchParams)
-				if (term) {
-					params.set("query", term)
-				} else {
-					params.delete("query")
-				}
-				replace(`${pathname}?${params.toString()}`)
-			}, 100),
-		[]
-	)
+	const search = (term: string) => {
+		const params = new URLSearchParams(searchParams)
+		if (term) {
+			params.set("query", term)
+		} else {
+			params.delete("query")
+		}
+		replace(`${pathname}?${params.toString()}`)
+	}
+
+	const handleSearch = useMemo(() => debounce(search, 100),[search])
 
 	return (
 		<div className="relative max-w-screen-lg justify-self-center w-full h-full">

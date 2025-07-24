@@ -1,4 +1,3 @@
-import { IGenericFetchProps } from "../../types/generalTypes";
 
 const defaultHeaderConfig = {
 	headers: {
@@ -6,7 +5,7 @@ const defaultHeaderConfig = {
 	}
 }
 
-const fetchWrapped = async <T>(promise: Promise<Response>): Promise<[T | undefined, any]> => {
+const fetchWrapped = async <T>(promise: Promise<Response>): Promise<[T | undefined, unknown]> => {
     try {
         const response = await promise
         if (response.ok) { // if response status is in the range 200-299

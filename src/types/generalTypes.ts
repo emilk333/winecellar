@@ -1,5 +1,3 @@
-import { InferSelectModel } from "drizzle-orm"
-import { wines } from "../../drizzle/schema"
 
 export interface IFetchHeaderConfig {
     method?: string, // *GET, POST, PUT, DELETE, etc.
@@ -7,7 +5,7 @@ export interface IFetchHeaderConfig {
     headers: {
       "Content-Type": string, // 'application/x-www-form-urlencoded', "application/json",
     },
-    body?: any //TODO fix this crap
+    body?: unknown //TODO fix this crap
 }
 
 export interface IGenericFetchProps {

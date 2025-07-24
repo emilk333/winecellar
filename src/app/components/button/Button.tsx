@@ -1,7 +1,6 @@
 "use client"
 
 import { FC, useState } from "react"
-import { Spinner } from "../loading/Spinner"
 import React from "react"
 import { rubikFont } from "@/app/util/font/fonts"
 import Loading from "../loading/Loading"
