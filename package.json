@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "aws-login": "aws sso login --sso-session=emilk333",
     "build": "next build",
     "dev": "next dev --turbopack",
     "introspect": "drizzle-kit pull",
