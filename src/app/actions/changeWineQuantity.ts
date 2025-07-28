@@ -11,7 +11,7 @@ export async function changeWineQuantity(id: number, newQuantity: number) {
         .eq('id', id)
 
     if (error) {
-        console.error(`Wine quantity modification failed: ${error}`)
+        console.error(`Wine quantity modification failed: ${error.message}`)
     }
     
     revalidatePath("/")

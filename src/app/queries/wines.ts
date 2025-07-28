@@ -2,11 +2,12 @@ import { db } from "@/db"
 import { wines } from "../../../drizzle/schema"
 import { Wine } from "@/types/schema"
 import { SimpleError } from "@/types/generalTypes"
+import { fetchWrapped } from "../util/fetch"
 
 
 // WTF is this shit - this is placed in the waaay wrong place... 
 export async function getAllWine(): Promise<[Wine[] | undefined, SimpleError | undefined]> {
-	// const [y, x] = await fetchWrapped(fetch(`http://localhost:3001/api/winelist/completeList`))
+	// const [y, x] = await fetchWrapped(fetch(`http://localhost:3000/api/winelist/completeList`))
 	// //@ts-ignore
 	// return [y, undefined]
 

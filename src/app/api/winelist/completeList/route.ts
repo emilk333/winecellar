@@ -15,6 +15,7 @@ export async function GET() {
             name: "P2",
             producer: "Dom Perignon",
             appelation: "Champagne",
+            quantity: 1,
             price: {
                 buyingPrice: 1300,
                 estimatedCurrentValue: 1300
@@ -28,6 +29,7 @@ export async function GET() {
             name: "P2",
             producer: "Dom Perignon",
             appelation: "Champagne",
+            quantity: 2,
             price: {
                 buyingPrice: 1300,
                 estimatedCurrentValue: 1300
@@ -41,6 +43,7 @@ export async function GET() {
             name: "P2",
             producer: "Dom Perignon",
             appelation: "Champagne",
+            quantity: 1,
             price: {
                 buyingPrice: 1300,
                 estimatedCurrentValue: 1300
@@ -54,6 +57,7 @@ export async function GET() {
             name: "P2",
             producer: "Dom Perignon",
             appelation: "Champagne",
+            quantity: 1,
             price: {
                 buyingPrice: 1300,
                 estimatedCurrentValue: 1300
@@ -67,6 +71,7 @@ export async function GET() {
             name: "Morstein GG",
             producer: "Wittmann",
             appelation: "Rheinhessen",
+            quantity: 1,
             price: {
                 buyingPrice: 1300,
                 estimatedCurrentValue: 1300
@@ -80,6 +85,7 @@ export async function GET() {
             name: "Gaisböhl GC",
             producer: "Dr. Burklin Wolf",
             appelation: "Phalz",
+            quantity: 1,
             price: {
                 buyingPrice: 600,
                 estimatedCurrentValue: 700

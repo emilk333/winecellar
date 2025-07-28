@@ -16,7 +16,7 @@ const fetchWrapped = async <T>(promise: Promise<Response>): Promise<[T | undefin
             return [data, undefined]
         } else throw new Error(`Request failed: http error: ${response.status}`)
         // We treat any response not within the http-code range of 200-299, as a failed request.
-
+        
     } catch(error) {
         return [undefined, error]
     }

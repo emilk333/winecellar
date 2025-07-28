@@ -39,7 +39,7 @@ const renderAppelationSections = (wineByAppelation: AppelationWine) => {
 
 const renderCountrySections = (wineByCountry: CountryWine) => {
 	return (
-		<section className="w-[calc(100%-0.5rem)] pb-3 text-coal-400">
+		<section className="w-[calc(100%-0.5rem)] pb-3 text-coal-400 lg:pl-0 pl-8">
 			<h2 className={`capitalize ${oldLondonFont.variable} font-old-london text-5xl pb-1`}>
 				{wineByCountry.country}
 			</h2>
@@ -85,7 +85,7 @@ export default async function Home(props: {
 }) {
 	const query = (await (await props.searchParams).query) ?? ""
 	const [wines, error] = await getAllWine()
-
+	
 	if (error || !wines) return <ErrorTemplate {...error}/>
 
 	const transformedData = transformWinesIntoStructuralData(wines, query)

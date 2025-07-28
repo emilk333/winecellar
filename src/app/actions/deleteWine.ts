@@ -10,7 +10,7 @@ export async function deleteWine(id: number) {
         .eq('id', id)
 
 	if (error) {
-		console.error(`Wine deletion failed: ${error}`)
+		console.error(`Wine deletion failed: ${error.message}`)
 	}
     
     revalidatePath("/")

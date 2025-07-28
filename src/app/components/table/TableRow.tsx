@@ -35,34 +35,38 @@ export const TableRow: FC<TableRowProps> = ({
 	
 
 	return (
-		<tr className="relative flex flex-row w-full text-lg">
-			<td className="basis-1/12 px-1">
+		<tr className="relative flex flex-row w-full md:text-lg text-sm whitespace-nowrap md:h-6 h-4">
+			<td className="md:basis-1/12 pr-2">
 				<p>{row.vintage}</p>
 			</td>
-			<td className="basis-4/12 px-1">
+			<td className="basis-4/12 md:px-2 pr-2">
 				<p>{row.name}</p>
 			</td>
-			<td className="basis-4/12 px-1">
+			<td className="basis-4/12 md:px-2 pr-2">
 				<p>{row.producer}</p>
 			</td>
-			<td className="basis-3/12 px-1">
+			<td className="basis-3/12 md:px-2 pr-2">
 				<p>{row.appelation}</p>
 			</td>
-			<td className="basis-3/12 px-1">
+			<td className="basis-3/12 md:px-2 pr-8">
 				<p>{price && `${price},-`}</p>
 			</td>
-			<td className="basis-1/12 text-right px-1 group relative">
-				<div className={`hidden group-hover:flex flex-col p-2.5 space-y-3 ${rubikFont.className} shadow-md rounded-sm bg-paper-400 w-fit absolute right-5 -top-4`}>
-					<button 
-						onClick={() => modifyWineQuantity(row, "increase")}
-						className="flex items-center justify-center h-4 w-4 font-sans text-lg">+</button>
-					<button 
-						onClick={() => modifyWineQuantity(row, "decrease")}
-						className="flex items-center justify-center h-4 w-4 font-sans text-lg">-</button>
-				</div>
-				<span>{isLoading ? <Spinner/> : row.quantity}</span>
+			<td className="basis-1/12 text-right md:px-2 pr-2 group relative">
+				{row.quantity && 
+					<>
+						<div className={`hidden group-hover:flex flex-col p-2.5 space-y-3 ${rubikFont.className} shadow-md rounded-sm bg-paper-400 w-fit absolute right-5 -top-4`}>
+							<button 
+								onClick={() => modifyWineQuantity(row, "increase")}
+								className="flex items-center justify-center h-4 w-4 font-sans text-lg">+</button>
+							<button 
+								onClick={() => modifyWineQuantity(row, "decrease")}
+								className="flex items-center justify-center h-4 w-4 font-sans text-lg">-</button>
+						</div>
+						<span>{isLoading ? <Spinner/> : row.quantity}</span>
+					</>
+				}
 			</td>
-			<td className="flex pt-1 ml-3">
+			<td className="flex ml-3">
 				{optionsButtonConfig && deleteButtonConfig &&
 					<Popup
 						outerChildren={<Button {...optionsButtonConfig} />}

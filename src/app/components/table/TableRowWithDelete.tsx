@@ -52,7 +52,7 @@ export const TableRowWithDelete: FC<TableRowWithDeleteProps> = ({row}) => {
 	const btnConfigTableOptions = {
 		name: <DotMenu color={"fill-red-500"}/>,
 		stripStyling: false,
-		styling: `min-h-4`,
+		styling: `min-h-4 !p-1`,
 		callback: () => {},
 	}
 

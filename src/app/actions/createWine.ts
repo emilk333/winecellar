@@ -25,7 +25,7 @@ export async function createWine(formData: FormData) {
 		})
  
 	if (error) {
-		console.error(`Wine entry table-row creation failed: ${error}`)
+		console.error(`Wine entry table-row creation failed: ${error.message}`)
 	}
 
     revalidatePath("/")
