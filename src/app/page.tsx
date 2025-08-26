@@ -15,10 +15,14 @@ import { Tag } from "./components/tag/Tag"
 import { getBgColorByType, getPseudoBgColorByType, getTextAccentColorByType } from "./util/color/ColorMappers"
 import SubmitWineWrapper from "./features/SubmitWineWrapper"
 import AddWine from "./features/AddWine"
+import { createClient } from '@/app/util/supabase/server';
+import { redirect } from "next/navigation"
+import { sortByWineType } from "./util/sortByWineType"
+import { sortByWineProducer } from "./util/sortByWineProducer"
 
 const renderAppelationSections = (wineByAppelation: AppelationWine) => {
 	return (
-		<section className="pb-6">
+		<section className="pb-5">
 			<h3 className={`font-old-london ${oldLondonFont.variable} capitalize text-2xl`}>
 				{wineByAppelation.appelation}
 			</h3>
@@ -26,7 +30,7 @@ const renderAppelationSections = (wineByAppelation: AppelationWine) => {
 				<caption className="sr-only"></caption>
 				<thead className="sr-only"></thead>
 				<tbody>
-					{wineByAppelation.wines.map((wine: Wine, index: number) => (
+					{sortByWineProducer(wineByAppelation.wines).map((wine: Wine, index: number) => (
 						<Suspense key={index}>
 							<TableRowWithDelete row={wine}/>
 						</Suspense>
@@ -39,7 +43,7 @@ const renderAppelationSections = (wineByAppelation: AppelationWine) => {
 
 const renderCountrySections = (wineByCountry: CountryWine) => {
 	return (
-		<section className="w-[calc(100%-0.5rem)] pb-3 text-coal-400 lg:pl-0 pl-8">
+		<section className="w-[calc(100%-0.5rem)] pb-8 text-coal-400 lg:pl-0 pl-8">
 			<h2 className={`capitalize ${oldLondonFont.variable} font-old-london text-5xl pb-1`}>
 				{wineByCountry.country}
 			</h2>
@@ -62,7 +66,7 @@ const renderTypeSections = (row: TypeWine, parentIndexKey: number) => {
 	const typePseudoAccentColor = getPseudoBgColorByType(row.type)
 
 	return (
-		<section key={parentIndexKey} className="relative mb-10 max-w-screen-lg justify-self-center w-full h-full">
+		<section key={parentIndexKey} className="relative mb-14 max-w-screen-lg justify-self-center w-full h-full">
 			<Tag
 				color={typeBgColor}
 				accentColor={typeTextAccentColor}
@@ -83,6 +87,14 @@ const renderTypeSections = (row: TypeWine, parentIndexKey: number) => {
 export default async function Home(props: {
 	searchParams: Promise<{ query?: string }>
 }) {
+	const supabase = await createClient()
+
+	const { data, error: authError } = await supabase.auth.getUser()
+
+	if (authError || !data?.user) {
+		redirect('/login')
+	}
+
 	const query = (await (await props.searchParams).query) ?? ""
 	const [wines, error] = await getAllWine()
 	
@@ -101,7 +113,7 @@ export default async function Home(props: {
 				</div>
 				<div className="w-full flex items-center justify-center">
 					<div className="w-full block">
-						{transformedData.map((row, index: number) =>
+						{sortByWineType(transformedData).map((row, index: number) =>
 							renderTypeSections(row, index)
 						)}
 					</div>

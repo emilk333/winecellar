@@ -9,8 +9,6 @@ import { fetchWrapped } from "@/app/util/fetch"
 import { Button } from "../button/Button"
 import DotMenu from "../svg/DotMenu"
 import TimesIcon from "../svg/Times"
-import { changeWineQuantity } from "@/app/actions/changeWineQuantity"
-import { useWineQuantity } from "@/app/hooks/modifyWineQuantity"
 
 interface TableRowWithDeleteProps {
 	row: Wine

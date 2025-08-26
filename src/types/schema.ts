@@ -10,9 +10,9 @@ export enum WineType {
 	Sparkling = "sparkling",
 	Champagne = "champagne",
 	White = "white",
-	Red = "red",
-	Rosé = "rose",
 	Orange = "orange",
+	Rosé = "rose",
+	Red = "red",
 	Sweet = "sweet",
 	Port = "port",
 }

@@ -9,13 +9,14 @@ export default {
   theme: {
     extend: {
       backgroundImage: {
-        'gradient-off-red': 'linear-gradient(100deg, #B11B1B 58%, rgba(87, 199, 133, 0) 90%)',
-        'gradient-piss-yellow': 'linear-gradient(100deg, #F2DE69 58%, rgba(87, 199, 133, 0) 90%)',
-        'gradient-yellow-green-tint': 'linear-gradient(100deg,rgb(219, 242, 105) 58%, rgba(87, 199, 133, 0) 90%)',
-        'gradient-port': 'linear-gradient(100deg, rgb(102, 30, 15) 58%, rgba(87, 199, 133, 0) 90%)',
-        'gradient-orange': 'linear-gradient(100deg, #F99340 58%, rgba(87, 199, 133, 0) 90%)',
-        'gradient-off-yellow': 'linear-gradient(100deg, #FFEA80 58%, rgba(87, 199, 133, 0) 90%)',
-        'gradient-rosé': 'linear-gradient(100deg, #FF8086 58%, rgba(87, 199, 133, 0) 90%)',
+        'gradient-off-red': 'linear-gradient(100deg, #B11B1B 100%, rgba(87, 199, 133, 0) 90%)',
+        'gradient-piss-yellow': 'linear-gradient(100deg, #f7e683ff 100%, rgba(87, 199, 133, 0) 90%)',
+        'gradient-yellow-green-tint': 'linear-gradient(100deg,rgba(238, 235, 181, 1) 100%, rgba(87, 199, 133, 0) 90%)',
+        'gradient-port': 'linear-gradient(100deg, rgb(102, 30, 15) 100%, rgba(87, 199, 133, 0) 90%)',
+        'gradient-orange': 'linear-gradient(100deg, #F99340 100%, rgba(87, 199, 133, 0) 90%)',
+        'gradient-off-yellow': 'linear-gradient(100deg, #FFEA80 100%, rgba(87, 199, 133, 0) 90%)',
+        'gradient-rosé': 'linear-gradient(100deg, #FF8086 100%, rgba(87, 199, 133, 0) 90%)',
+        'gradient-paper': 'linear-gradient(100deg, rgba(228, 225, 217, 1) 100%, rgba(87, 199, 133, 0) 90%)',
       },
       colors: {
         background: "var(--background)",
@@ -30,14 +31,15 @@ export default {
         'paper': {
           400: '#F5F4F1',
           600: '#EFEDE6',
-          800: '#E4E1D9'
+          800: 'rgba(228, 225, 217, 1)',
+          900: '#8d7f5a'
         },
         'yellow-green-tint': {
-          400: 'rgb(241, 241, 123)',
+          400: 'rgba(238, 235, 181, 1)',
           800: 'rgb(142, 141, 40)'
         },
         'piss-yellow': {
-          400: '#F2DE69',
+          400: '#f7e683ff',
           800: '#8A7B27'
         },
         'off-red': {
@@ -50,7 +52,7 @@ export default {
         },
         'orange': {
           400: '#F99340',
-          800: 'rgb(142, 98, 40)'
+          800: 'rgba(110, 76, 31, 1)'
         },
         'off-yellow': {
           400: '#FFEA80',

@@ -35,23 +35,23 @@ export const TableRow: FC<TableRowProps> = ({
 	
 
 	return (
-		<tr className="relative flex flex-row w-full md:text-lg text-sm whitespace-nowrap md:h-6 h-4">
-			<td className="md:basis-1/12 pr-2">
+		<tr className="relative flex flex-row w-full md:text-lg text-sm">
+			<td className="pr-2">
 				<p>{row.vintage}</p>
 			</td>
-			<td className="basis-4/12 md:px-2 pr-2">
+			<td className="basis-5/12 md:px-2 pr-2">
 				<p>{row.name}</p>
 			</td>
 			<td className="basis-4/12 md:px-2 pr-2">
 				<p>{row.producer}</p>
 			</td>
 			<td className="basis-3/12 md:px-2 pr-2">
-				<p>{row.appelation}</p>
+				<p>{row.subAppelation}</p>
 			</td>
-			<td className="basis-3/12 md:px-2 pr-8">
+			<td className="md:px-2 pr-8">
 				<p>{price && `${price},-`}</p>
 			</td>
-			<td className="basis-1/12 text-right md:px-2 pr-2 group relative">
+			<td className="text-right md:px-2 pr-2 group relative">
 				{row.quantity && 
 					<>
 						<div className={`hidden group-hover:flex flex-col p-2.5 space-y-3 ${rubikFont.className} shadow-md rounded-sm bg-paper-400 w-fit absolute right-5 -top-4`}>

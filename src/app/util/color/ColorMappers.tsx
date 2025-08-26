@@ -6,7 +6,7 @@ const getPseudoBgColorByType = (type: WineType) => {
 			return "after:bg-gradient-yellow-green-tint"; 
 		} 
 		case WineType.Sparkling: { 
-			return "after:bg-gradient-yellow-green-tint"; 
+			return "after:bg-gradient-paper"; 
 		} 
 		case WineType.White: { 
 			return "after:bg-gradient-piss-yellow"; 
@@ -27,7 +27,7 @@ const getPseudoBgColorByType = (type: WineType) => {
 			return "after:bg-gradient-port"; 
 		} 
 		default: { 
-			return "unknown"; 
+			return "after:bg-gradient-paper"; 
 		} 
 	} 
 }
@@ -38,7 +38,7 @@ const getBgColorByType = (type: WineType) => {
 			return "bg-yellow-green-tint-400"; 
 		} 
 		case WineType.Sparkling: { 
-			return "bg-yellow-green-tint-400"; 
+			return "bg-paper-800"; 
 		} 
 		case WineType.White: { 
 			return "bg-piss-yellow-400"; 
@@ -59,7 +59,7 @@ const getBgColorByType = (type: WineType) => {
 			return "bg-port-800"; 
 		} 
 		default: { 
-			return "unknown"; 
+			return "bg-paper-800"; 
 		} 
 	} 
 }
@@ -70,7 +70,7 @@ const getTextAccentColorByType = (type: WineType) => {
 			return "text-yellow-green-tint-800"; 
 		} 
 		case WineType.Sparkling: { 
-			return "text-yellow-green-tint-800"; 
+			return "text-paper-900"; 
 		} 
 		case WineType.White: { 
 			return "text-piss-yellow-800"; 
@@ -91,7 +91,7 @@ const getTextAccentColorByType = (type: WineType) => {
 			return "text-port-400"; 
 		} 
 		default: { 
-			return "unknown"; 
+			return "text-paper-800"; 
 		} 
 	} 
 }

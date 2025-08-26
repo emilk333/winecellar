@@ -1,6 +1,6 @@
 {
   "name": "winetracker",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "aws-login": "aws sso login --sso-session=emilk333",
@@ -9,7 +9,7 @@
     "introspect": "drizzle-kit pull",
     "lint": "next lint",
     "start": "next start",
-    "sso": "aws sso login --sso-session=emilk333"
+    "deploy-sst": "sst deploy --stage production"
   },
   "dependencies": {
     "@supabase/auth-helpers-nextjs": "^0.10.0",
