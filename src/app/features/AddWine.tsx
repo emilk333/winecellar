@@ -14,6 +14,7 @@ export default function AddWine() {
 				<Input message={""} id="name" displayLable={true} />
 				<Input message={""} id="producer" displayLable={true} />
 				<Input message={""} id="appelation" displayLable={true} />
+				<Input message={""} id="sub-appelation" displayLable={true} />
 				<div className="flex space-x-2">
 					<Input message={""} id="type" displayLable={true} />
 					<Input message={""} id="country" displayLable={true} />

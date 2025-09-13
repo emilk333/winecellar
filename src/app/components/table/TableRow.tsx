@@ -32,7 +32,6 @@ export const TableRow: FC<TableRowProps> = ({
 
 	const rowPrice = row.price as WinePrice | null // TODO Stupid hack - define type from drizzle
 	const price = rowPrice?.buyingPrice ? thousandCommaSeparator(rowPrice.buyingPrice) : ""
-	
 
 	return (
 		<tr className="relative flex flex-row w-full md:text-lg text-sm">

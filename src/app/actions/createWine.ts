@@ -7,6 +7,8 @@ export async function createWine(formData: FormData) {
 
     const formValues = Object.fromEntries(formData)
 
+    console.log(formValues)
+
     const { error } = await (await createClient())
         .from('wines')
 		.insert({
@@ -17,8 +19,9 @@ export async function createWine(formData: FormData) {
             name: formValues?.name ?? "",
             producer: formValues?.producer ?? "",
             appelation: formValues?.appelation ?? "",
+            sub_appelation: formValues['sub-appelation'] ?? "",
             price: {
-                buyingPrice: formValues?.buyingPrice ?? Number.MIN_VALUE,
+                buyingPrice: formValues?.price ?? Number.MIN_VALUE,
                 estimatedCurrentValue: formValues?.estimatedCurrentValue ?? Number.MIN_VALUE
             },
             quantity: formValues?.quantity ?? 1
