@@ -1,6 +1,5 @@
 import type { Metadata } from "next"
 import "./globals.css"
-import { cormorantFont } from "./util/font/fonts"
 
 export const metadata: Metadata = {
 	title: "Wine list",
@@ -13,7 +12,7 @@ export default function RootLayout({
 }: any) {
 	return (
 		<html lang="en">
-			<body className={`${cormorantFont.variable} font-serif antialiased bg-paper-400`}>
+			<body className={`antialiased bg-paper-100`}>
 				{modal}
 				{children}
 			</body>

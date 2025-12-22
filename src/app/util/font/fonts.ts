@@ -1,5 +1,10 @@
-import { Cormorant, Rubik } from "next/font/google"
 import localFont from "next/font/local"
+
+const aleoFont = localFont({
+    src: "./../../../../public/font/aleo/Aleo-VariableFont_wght.ttf",
+    preload: true,
+    variable: "--font-aleo"
+})
 
 const oldLondonFont = localFont({
     src: "./../../../../public/font/OldLondon.ttf",
@@ -7,16 +12,5 @@ const oldLondonFont = localFont({
     variable: "--font-old-london"
 })
 
-const cormorantFont = Cormorant({
-	variable: "--font-cormorant",
-    preload: false,
-    weight: "400"
-})
 
-const rubikFont = Rubik({
-	variable: "--font-rubik",
-    preload: false,
-})
-
-
-export { oldLondonFont, cormorantFont, rubikFont }
+export { oldLondonFont, aleoFont }

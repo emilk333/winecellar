@@ -1,4 +1,4 @@
-import { rubikFont } from "@/app/util/font/fonts"
+import { aleoFont } from "@/app/util/font/fonts"
 import { FC, ReactNode, useEffect, useRef } from "react"
 
 interface ModalProps {
@@ -49,11 +49,11 @@ const Modal: FC<ModalProps> = ({ isOpen, onClose, children, message, childStyles
 	}, [isOpen])
 
 	return (
-		<dialog ref={dialogRef} onClose={onClose} className="px-5 py-7 rounded-sm bg-paper-400 max-w-xl">
-			<div ref={dialogInner} className={`flex flex-col font-serif ${rubikFont.className} font-sans text-2xl pb-6`}>
+		<dialog ref={dialogRef} onClose={onClose} className="py-7 rounded-sm bg-paper-100 max-w-xl lg:mx-auto mx-[15px]">
+			<div ref={dialogInner} className={`px-5 border-b-[1px] border-gray-400 flex flex-col font-serif ${aleoFont.className} font-sans text-2xl pb-6`}>
 				{message}
 			</div>
-			<div className={`flex lg:space-y-0 space-y-3 ${childStyles}`} id="wt-inner-modal">
+			<div className={`pt-5 px-5 border-gray-400 flex lg:space-y-0 space-y-3 ${childStyles}`} id="wt-inner-modal">
 				{children}
 			</div>
 		</dialog>

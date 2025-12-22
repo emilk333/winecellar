@@ -22,8 +22,11 @@ function filterUniqueByProperty<T>(arr: Array<T>, prop: keyof T) {
 	const uniqueObjects = []
 
 	for (const obj of arr) {
-		if (!uniqueValues.has(obj[prop])) {
-			uniqueValues.add(obj[prop])
+		const value = obj[prop]
+		const normalizedValue = typeof value === "string" ? value.toLowerCase() : String(value)
+
+		if (!uniqueValues.has(normalizedValue)) {
+			uniqueValues.add(normalizedValue)
 			uniqueObjects.push(obj)
 		}
 	}
@@ -54,13 +57,14 @@ function filterByCountry(wines: Wine[]): CountryWine[] {
 	const uniqueCountries = filterUniqueByProperty(wines, "country")
 		.map((wine) => wine.country)
 		.filter((country) => country !== null)
-
+		
 	return wines
 		.map((_: Wine, index: number) => {
 			const winesByCountry = wines.filter(
-				(wine: Wine) =>
-					wine.country === uniqueCountries[index]
-			)
+				(wine: Wine) => 
+					wine.country?.toLowerCase() === (uniqueCountries[index] ?? "").toLowerCase()
+				)
+
 			return {
 				country: uniqueCountries[index],
 				wines: filterByAppelation(winesByCountry),
@@ -78,8 +82,8 @@ function filterByAppelation(wines: Wine[]): AppelationWine[] {
 		.map((_: Wine, index: number) => {
 			const winesByAppelation = wines.filter(
 				(wine: Wine) =>
-					wine.appelation === uniqueAppelations[index]
-			)
+					wine.appelation?.toLowerCase() === (uniqueAppelations[index] ?? "").toLowerCase()
+				)
 
 			return {
 				appelation: uniqueAppelations[index],

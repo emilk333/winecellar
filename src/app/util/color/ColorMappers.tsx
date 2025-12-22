@@ -1,6 +1,38 @@
 import { WineType } from "@/types/schema";
 
-const getPseudoBgColorByType = (type: WineType) => {
+const getPseudoBgColorByTypeBefore = (type: WineType) => {
+	switch(type) { 
+		case WineType.Champagne: { 
+			return "before:bg-gradient-yellow-green-tint"; 
+		} 
+		case WineType.Sparkling: { 
+			return "before:bg-gradient-paper"; 
+		} 
+		case WineType.White: { 
+			return "before:bg-gradient-piss-yellow"; 
+		} 
+		case WineType.Red: { 
+			return "before:bg-gradient-off-red"; 
+		} 
+		case WineType.Rosé: { 
+			return "before:bg-gradient-rosé"; 
+		} 
+		case WineType.Orange: { 
+			return "before:bg-gradient-orange"; 
+		} 
+		case WineType.Sweet: { 
+			return "before:bg-gradient-off-yellow"; 
+		} 
+		case WineType.Port: { 
+			return "before:bg-gradient-port"; 
+		} 
+		default: { 
+			return "before:bg-gradient-paper"; 
+		} 
+	} 
+}
+
+const getPseudoBgColorByTypeAfter = (type: WineType) => {
 	switch(type) { 
 		case WineType.Champagne: { 
 			return "after:bg-gradient-yellow-green-tint"; 
@@ -99,5 +131,6 @@ const getTextAccentColorByType = (type: WineType) => {
 export { 
 	getBgColorByType,
 	getTextAccentColorByType,
-	getPseudoBgColorByType
+	getPseudoBgColorByTypeAfter,
+	getPseudoBgColorByTypeBefore
 }

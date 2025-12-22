@@ -1,4 +1,4 @@
-import { pgTable, bigint, uuid, timestamp, text, json } from "drizzle-orm/pg-core"
+import { pgTable, bigint, uuid, timestamp, text, json, boolean } from "drizzle-orm/pg-core"
 import { sql } from "drizzle-orm"
 
 
@@ -18,5 +18,7 @@ export const wines = pgTable("wines", {
 	price: json(),
 	// You can use { mode: "bigint" } if numbers are exceeding js number limitations
 	quantity: bigint({ mode: "number" }).default(sql`'1'`),
-	subAppelation: text("sub_appelation").default(''),
+	subAppelation: text("sub_appelation"),
+	isRemote: boolean("is_remote").default(false).notNull(),
+	isRestricted: boolean("is_restricted").default(false).notNull(),
 });

@@ -1,13 +1,14 @@
 "use client"
 
-import { rubikFont } from "@/app/util/font/fonts"
+import { aleoFont } from "@/app/util/font/fonts"
 import { FC } from "react"
 
 export type InputProps = {
 	attributes?: {
 		required: boolean,
 		name: string,
-		type: string
+		type: string,
+		label: string
 	}
 	message: number | string | null,
 	defaultValue?: string,
@@ -24,19 +25,18 @@ export const Input: FC<InputProps> = ({
 	id,
 	callback,
 	displayLable,
-	value
+	value,
 }) => {
 	return (
-		<div className="w-full py-1">
-			<label htmlFor={id.toLowerCase()} className={`${displayLable ? "" : "sr-only"} ${rubikFont.className} font-sans text-sm `}>
-				{/* Quick hacks */}
-				{id}
+		<div className="w-full">
+			<label htmlFor={id.toLowerCase()} className={`${displayLable ? "" : "sr-only"} ${aleoFont.className} font-sans text-sm `}>
+				{attributes?.label}
 			</label>
 			<input
 				id={id.toLowerCase()}
 				value={value}
 				type={attributes?.type}
-				className={`${rubikFont.className} font-sans text-sm w-full bg-transparent placeholder-gray-500 placeholder:text-sm font-sans text-sm border border-paper-600 rounded-sm px-3 py-2.5 transition duration-300 ease focus:outline-none focus:border-paper-800 hover:border-paper-800 shadow-sm focus:shadow`}
+				className={`${aleoFont.className} font-sans text-sm w-full bg-transparent placeholder-gray-500 placeholder:text-sm font-sans text-sm border border-gray-400 rounded-sm px-3 py-2.5 transition duration-300 ease focus:outline-none focus:border-paper-800 hover:border-paper-800 focus:shadow`}
 				placeholder={message?.toString()}
 				onChange={(e) => {
 					if (callback) callback(e)

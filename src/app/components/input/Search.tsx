@@ -23,7 +23,7 @@ export default function Search({ placeholder }: { placeholder: string }) {
 	const handleSearch = useMemo(() => debounce(search, 100),[search])
 
 	return (
-		<div className="relative max-w-screen-lg justify-self-center w-full h-full">
+		<div className="relative border-gray-400 justify-self-center w-full h-full">
 			<Input
 				message={placeholder}
 				defaultValue={searchParams.get("query")?.toString()}
