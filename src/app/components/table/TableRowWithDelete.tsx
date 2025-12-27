@@ -40,7 +40,7 @@ export const TableRowWithDelete: FC<TableRowWithDeleteProps> = ({row}) => {
 	const btnConfigDeleteWine = {
 		name: <div className="flex items-center justify-center">
 			<TimesIcon color={"text-red-600 fill-current"}/>
-			<p className="pl-1 font-sans text-sm mt-0.5">Delete</p>
+			<p className="pl-1 font-sans text-sm">Delete</p>
 		</div>,
 		stripStyling: false,
 		styling: `min-h-4`,

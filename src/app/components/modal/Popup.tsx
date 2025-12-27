@@ -38,7 +38,7 @@ const Popup: FC<PopupProps> = (props) => {
 				{props.outerChildren}
 			</div>
 			{isOpen && (
-				<article ref={popupRef} className="shadow-md rounded-sm bg-paper-400 max-w-[100px] w-fit absolute right-6 bottom-5">
+				<article ref={popupRef} className="border-[1px] border-gray-400 shadow-md rounded-sm bg-paper-100 max-w-[100px] w-fit absolute right-4 bottom-4">
 					<div onClick={togglePopup}>
 						{props.innerChildren}
 					</div>

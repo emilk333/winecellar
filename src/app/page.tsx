@@ -10,9 +10,9 @@ import { getAllWine } from "./queries/wines"
 import { TypeWine } from "./dataTransform/dataTransform"
 import { Wine } from "@/types/schema"
 import { TableRowWithDelete } from "./components/table/TableRowWithDelete"
-import { oldLondonFont } from "./util/font/fonts"
+import { oldLondonFont, aleoFont } from "./util/font/fonts"
 import { Tag } from "./components/tag/Tag"
-import { getBgColorByType, getPseudoBgColorByType, getTextAccentColorByType } from "./util/color/ColorMappers"
+import { getBgColorByType, getPseudoBgColorByTypeAfter, getPseudoBgColorByTypeBefore, getTextAccentColorByType, } from "./util/color/ColorMappers"
 import SubmitWineWrapper from "./features/SubmitWineWrapper"
 import AddWine from "./features/AddWine"
 import { createClient } from '@/app/util/supabase/server';
@@ -22,11 +22,11 @@ import { sortByWineProducer } from "./util/sortByWineProducer"
 
 const renderAppelationSections = (wineByAppelation: AppelationWine) => {
 	return (
-		<section className="pb-5">
-			<h3 className={`font-old-london ${oldLondonFont.variable} capitalize text-2xl`}>
+		<section className={`pb-5 lg:w-full w-max`}>
+			<h3 className={`capitalize font-bold text-lg font-body ${aleoFont.variable} pb-2`}>
 				{wineByAppelation.appelation}
 			</h3>
-			<table className="w-full">
+			<table className={`w-full font-body text-sm ${aleoFont.variable} lg:min-w-auto min-w-[800px]`}>
 				<caption className="sr-only"></caption>
 				<thead className="sr-only"></thead>
 				<tbody>
@@ -43,8 +43,8 @@ const renderAppelationSections = (wineByAppelation: AppelationWine) => {
 
 const renderCountrySections = (wineByCountry: CountryWine) => {
 	return (
-		<section className="w-[calc(100%-0.5rem)] pb-8 text-coal-400 lg:pl-0 pl-8">
-			<h2 className={`capitalize ${oldLondonFont.variable} font-old-london text-5xl pb-1`}>
+		<section className="overflow-x-auto overflow-y-clip relative z-10 text-coal-400 bg-paper-100 border-gray-400 border-b lg:p-10 p-4">
+			<h2 className={`capitalize ${oldLondonFont.variable} font-old-london text-5xl lg:pb-1 pb-6 text-center`}>
 				{wineByCountry.country}
 			</h2>
 			{wineByCountry.wines.map(
@@ -63,14 +63,16 @@ const renderCountrySections = (wineByCountry: CountryWine) => {
 const renderTypeSections = (row: TypeWine, parentIndexKey: number) => {
 	const typeBgColor = getBgColorByType(row.type)
 	const typeTextAccentColor = getTextAccentColorByType(row.type)
-	const typePseudoAccentColor = getPseudoBgColorByType(row.type)
+	const typePseudoAccentColorAfter = getPseudoBgColorByTypeAfter(row.type)
+	const typePseudoAccentColorBefore = getPseudoBgColorByTypeBefore(row.type)
 
 	return (
-		<section key={parentIndexKey} className="relative mb-14 max-w-screen-lg justify-self-center w-full h-full">
+		<section key={parentIndexKey} className="relative mb-14 container border-gray-400 border-l-[1px] border-r-[1px] justify-self-center w-full h-full border-gray-400 border-solid border-t">
 			<Tag
 				color={typeBgColor}
 				accentColor={typeTextAccentColor}
-				pseudoColor={typePseudoAccentColor}
+				pseudoColorAfter={typePseudoAccentColorAfter}
+				pseudoColorBefore={typePseudoAccentColorBefore}
 				data={row.type}
 			/>
 			{row.wines.map((wineByCountry: CountryWine, index: number) => {
@@ -103,9 +105,9 @@ export default async function Home(props: {
 	const transformedData = transformWinesIntoStructuralData(wines, query)
 
 	return (
-		<div className="items-center justify-center min-h-screen pb-20 flex">
-			<main className="lg:px-0 px-4 w-full flex items-center flex-col max-w-screen-lg">
-				<div className="w-full mb-10 mt-8 flex items-center justify-center space-x-2 lg:-ml-4">
+		<div className="justify-center min-h-screen pb-20 flex">
+			<main className="lg:px-0 px-4 w-full flex items-center flex-col mb-10 mt-8 md:mx-20 mx-0">
+				<div className="container w-full flex items-center relative">
 					<Search placeholder={"Search..."} />
 					<SubmitWineWrapper>
 						<AddWine />
@@ -116,6 +118,7 @@ export default async function Home(props: {
 						{sortByWineType(transformedData).map((row, index: number) =>
 							renderTypeSections(row, index)
 						)}
+						<div className="h-20 bg-paper-100 z-10 relative"></div>
 					</div>
 				</div>
 			</main>

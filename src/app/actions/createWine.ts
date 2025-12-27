@@ -7,24 +7,24 @@ export async function createWine(formData: FormData) {
 
     const formValues = Object.fromEntries(formData)
 
-    console.log(formValues)
-
     const { error } = await (await createClient())
         .from('wines')
 		.insert({
-            type: formValues?.type ?? "",
+            type: formValues?.type.toString().toLowerCase() ?? "",
             uuid: uuidv4(),
             vintage: formValues?.vintage ?? Number.MIN_VALUE,
-            country: formValues?.country ?? "",
+            country: formValues?.country.toString().toLowerCase() ?? "",
             name: formValues?.name ?? "",
             producer: formValues?.producer ?? "",
-            appelation: formValues?.appelation ?? "",
-            sub_appelation: formValues['sub-appelation'] ?? "",
+            appelation: formValues?.appelation.toString().toLowerCase() ?? "",
+            sub_appelation: formValues['sub-appelation'].toString().toLowerCase() ?? "",
             price: {
                 buyingPrice: formValues?.price ?? Number.MIN_VALUE,
                 estimatedCurrentValue: formValues?.estimatedCurrentValue ?? Number.MIN_VALUE
             },
-            quantity: formValues?.quantity ?? 1
+            quantity: formValues?.quantity ?? 1,
+            is_remote: typeof formValues.is_remote === "undefined" ? false : true,
+            is_restricted: typeof formValues.is_restricted === "undefined" ? false : true
 		})
  
 	if (error) {

@@ -7,10 +7,6 @@ import { fetchWrapped } from "../util/fetch"
 
 // WTF is this shit - this is placed in the waaay wrong place... 
 export async function getAllWine(): Promise<[Wine[] | undefined, SimpleError | undefined]> {
-	// const [y, x] = await fetchWrapped(fetch(`http://localhost:3000/api/winelist/completeList`))
-	// //@ts-ignore
-	// return [y, undefined]
-
 	try {
 		const data = (await db.select().from(wines)) as Wine[] // Thanks Drizzle ...
 		return [data, undefined]

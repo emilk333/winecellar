@@ -28,9 +28,14 @@ export default {
           400: 'rgb(72, 173, 77)',
           800: 'rgb(65, 163, 70)',
         },
+        'gray': {
+          400: 'rgba(15, 15, 0, 0.12)'
+        },
         'paper': {
+          100: 'rgba(253, 253, 252, 1)',
           400: '#F5F4F1',
           600: '#EFEDE6',
+          700: 'rgba(100, 100, 98, 1)',
           800: 'rgba(228, 225, 217, 1)',
           900: '#8d7f5a'
         },
@@ -65,8 +70,7 @@ export default {
       },
       fontFamily: {
         'old-london': ['var(--font-old-london)'],
-        serif: ['var(--font-cormorant)'],
-        sans: ['var(--font-rubik)']
+        body: ['var(--font-aleo)'],
       }
     },
   },
